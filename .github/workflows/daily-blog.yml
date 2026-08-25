@@ -1,0 +1,69 @@
+name: 毎日のブログ記事を生成
+
+on:
+  schedule:
+    # 日本時間 毎朝 9:20（JST = UTC+9 なので UTC 00:20）
+    - cron: '20 0 * * *'
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'ファイルを書かずに内容だけ確認する'
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: daily-blog
+  cancel-in-progress: false
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: リポジトリを取得
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Node.js を用意
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: 依存関係をインストール
+        run: npm ci
+
+      - name: 記事を生成
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          # 未設定なら claude-haiku-4-5 が使われます
+          ANTHROPIC_MODEL: ${{ vars.ANTHROPIC_MODEL }}
+          DRY_RUN: ${{ inputs.dry_run && '1' || '0' }}
+        run: node scripts/generate-blog-post.mjs
+
+      - name: 型チェックとビルドで壊れていないか確認
+        if: ${{ !inputs.dry_run }}
+        env:
+          NEXT_PUBLIC_SITE_URL: ${{ vars.NEXT_PUBLIC_SITE_URL }}
+        run: |
+          npx tsc --noEmit
+          npm run build
+
+      - name: 変更をコミットして push
+        if: ${{ !inputs.dry_run }}
+        run: |
+          if [ -z "$(git status --porcelain content/blog)" ]; then
+            echo "新しい記事はありません。"
+            exit 0
+          fi
+          git config user.name  "toriharu-bot"
+          git config user.email "actions@github.com"
+          git add content/blog
+          NEW_FILE=$(git diff --cached --name-only --diff-filter=A | head -n 1)
+          git commit -m "記事を追加: $(basename "${NEW_FILE:-新しい記事}" .md)"
+          git push
