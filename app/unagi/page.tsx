@@ -114,7 +114,7 @@ export default function UnagiPage() {
                   }`}
                 >
                   <Reveal as="figure" slow className="relative">
-                    <Photo photo={step.photo} sizes="(max-width: 1024px) 92vw, 46vw" className="h-auto w-full" />
+                    <Photo photo={step.photo} sizes="(max-width: 1023px) 92vw, 46vw" className="h-auto w-full" />
                   </Reveal>
                   <Reveal delay={100}>
                     <p className="eyebrow text-honoo tabular-nums">{step.n}</p>
@@ -144,7 +144,7 @@ export default function UnagiPage() {
 
           <div className="mt-14 grid gap-14 lg:grid-cols-2 lg:gap-20">
             <Reveal slow>
-              <Photo photo={photos.kabayakiShowcase} sizes="(max-width: 1024px) 92vw, 46vw" className="h-auto w-full" />
+              <Photo photo={photos.kabayakiShowcase} sizes="(max-width: 1023px) 92vw, 46vw" className="h-auto w-full" />
               <h3 className="display mt-8 text-2xl tracking-[0.06em]">上焼き鰻（蒲焼）</h3>
               <div className="mt-5 space-y-4 text-[0.92rem] leading-[2.05]">
                 <p>
@@ -160,7 +160,7 @@ export default function UnagiPage() {
             </Reveal>
 
             <Reveal slow delay={120}>
-              <Photo photo={photos.shirayaki03} sizes="(max-width: 1024px) 92vw, 46vw" className="h-auto w-full" />
+              <Photo photo={photos.shirayaki03} sizes="(max-width: 1023px) 92vw, 46vw" className="h-auto w-full" />
               <h3 className="display mt-8 text-2xl tracking-[0.06em]">鰻の白焼き</h3>
               <div className="mt-5 space-y-4 text-[0.92rem] leading-[2.05]">
                 <p>
@@ -216,7 +216,7 @@ export default function UnagiPage() {
 
           <Reveal delay={120}>
             <figure>
-              <Photo photo={photos.imgUnaju} sizes="(max-width: 1024px) 92vw, 42vw" className="h-auto w-full" />
+              <Photo photo={photos.imgUnaju} sizes="(max-width: 1023px) 92vw, 42vw" className="h-auto w-full" />
               <figcaption className="mt-3 flex items-center gap-3 text-[0.74rem] opacity-60">
                 <span>ご家庭で、あたたかいごはんの上に。</span>
               </figcaption>

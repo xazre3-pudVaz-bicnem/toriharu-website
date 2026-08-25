@@ -18,14 +18,14 @@ export default function FireSection() {
         <div className="grid gap-16 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-24">
           <div className="order-2 grid grid-cols-12 gap-4 md:gap-6 lg:order-1">
             <Reveal className="col-span-6" slow>
-              <Photo photo={photos.shirayaki02} sizes="(max-width: 1024px) 46vw, 24vw" className="h-auto w-full" />
+              <Photo photo={photos.shirayaki02} sizes="(max-width: 1023px) 46vw, 24vw" className="h-auto w-full" />
             </Reveal>
             <Reveal className="col-span-6 mt-16" delay={120} slow>
-              <Photo photo={photos.yakitoriSmoke} sizes="(max-width: 1024px) 46vw, 24vw" className="h-auto w-full" />
+              <Photo photo={photos.yakitoriSmoke} sizes="(max-width: 1023px) 46vw, 24vw" className="h-auto w-full" />
             </Reveal>
             <Reveal className="col-span-12 mt-2" delay={200} slow>
               <figure>
-                <Photo photo={photos.imgCraftHands} sizes="(max-width: 1024px) 92vw, 44vw" className="h-auto w-full" />
+                <Photo photo={photos.imgCraftHands} sizes="(max-width: 1023px) 92vw, 44vw" className="h-auto w-full" />
                 <figcaption className="mt-3 flex items-center gap-3 text-[0.72rem] text-kinari/55">
                   <span>炭の上では、目と耳と鼻がすべて。</span>
                 </figcaption>

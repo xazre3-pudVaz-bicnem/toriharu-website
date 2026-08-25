@@ -88,14 +88,14 @@ export default function AboutPage() {
 
           <div className="grid grid-cols-12 gap-4 md:gap-6">
             <Reveal className="col-span-7" slow>
-              <Photo photo={photos.sabaki02} sizes="(max-width: 1024px) 55vw, 26vw" className="h-auto w-full" />
+              <Photo photo={photos.sabaki02} sizes="(max-width: 1023px) 55vw, 26vw" className="h-auto w-full" />
             </Reveal>
             <Reveal className="col-span-5 mt-20" delay={120} slow>
-              <Photo photo={photos.sansho} sizes="(max-width: 1024px) 40vw, 19vw" className="h-auto w-full" />
+              <Photo photo={photos.sansho} sizes="(max-width: 1023px) 40vw, 19vw" className="h-auto w-full" />
               <p className="mt-3 text-[0.72rem] leading-relaxed opacity-60">紀州の山椒を、鰻に添えて。</p>
             </Reveal>
             <Reveal className="col-span-12" delay={200} slow>
-              <Photo photo={photos.scale} sizes="(max-width: 1024px) 92vw, 44vw" className="h-auto w-full" />
+              <Photo photo={photos.scale} sizes="(max-width: 1023px) 92vw, 44vw" className="h-auto w-full" />
             </Reveal>
           </div>
         </div>

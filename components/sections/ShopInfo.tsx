@@ -94,13 +94,19 @@ export default function ShopInfo({ index, heading = '店舗情報', mapClassName
           </Reveal>
 
           <Reveal delay={100} className="lg:sticky lg:top-28 lg:self-start">
-            <div className={`w-full overflow-hidden bg-sumi/5 ${mapClassName}`}>
+            <div className={`map-frame w-full overflow-hidden bg-sumi/5 ${mapClassName}`}>
+              {/*
+                * 埋め込み地図の中にはキーボードで操作できる要素がないため、
+                * タブ順に入れると「入っても何もできない行き止まり」になる。
+                * tabIndex={-1} で外し、下の「Googleマップで開く」リンクを到達手段にする。
+                */}
               <iframe
                 src={shop.mapEmbedSrc}
                 title={`${shop.name}の地図（${shop.address.full}）`}
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
                 className="h-full w-full border-0"
+                tabIndex={-1}
                 allowFullScreen
               />
             </div>

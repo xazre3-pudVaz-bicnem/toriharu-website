@@ -51,7 +51,7 @@ export default function SeasonalSection({ compact = false }: { compact?: boolean
                         alt={item.imageAlt ?? item.name}
                         width={640}
                         height={800}
-                        sizes="(max-width: 640px) 92vw, 10rem"
+                        sizes="(max-width: 639px) 92vw, 10rem"
                         className="h-auto w-full"
                       />
                     ) : (

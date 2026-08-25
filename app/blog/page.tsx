@@ -42,17 +42,26 @@ export default function BlogIndexPage() {
 
       <section className="bg-kinari px-5 py-20 md:px-10 md:py-32">
         <div className="mx-auto max-w-[92rem]">
-          {/* カテゴリの案内（リンクはページ内アンカー） */}
+          {/*
+            カテゴリの案内（リンクはページ内アンカー）。
+            記事が0件のカテゴリは下のセクション自体を描画しないため、
+            リンクにすると飛べない。件数のある分だけを出す。
+          */}
           <Reveal>
             <ul className="flex flex-wrap gap-x-8 gap-y-3 border-b border-sumi/15 pb-6 text-[0.82rem]">
-              {categoryKeys.map((key) => (
-                <li key={key}>
-                  <a href={`#${key}`} className="tracking-[0.1em] underline-offset-[6px] hover:underline">
-                    {blogCategories[key].label}
-                    <span className="ml-2 text-[0.7rem] tabular-nums opacity-72">{counts[key]}</span>
-                  </a>
-                </li>
-              ))}
+              {categoryKeys
+                .filter((key) => counts[key] > 0)
+                .map((key) => (
+                  <li key={key}>
+                    <a
+                      href={`#${key}`}
+                      className="inline-block py-1.5 tracking-[0.1em] underline-offset-[6px] hover:underline"
+                    >
+                      {blogCategories[key].label}
+                      <span className="ml-2 text-[0.7rem] tabular-nums opacity-72">{counts[key]}</span>
+                    </a>
+                  </li>
+                ))}
             </ul>
           </Reveal>
 

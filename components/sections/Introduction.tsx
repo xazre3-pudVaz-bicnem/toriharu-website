@@ -44,14 +44,14 @@ export default function Introduction() {
           <Reveal className="col-span-8 col-start-1 lg:col-span-7" slow>
             <Photo
               photo={photos.storefront}
-              sizes="(max-width: 1024px) 62vw, 34vw"
+              sizes="(max-width: 1023px) 62vw, 34vw"
               className="h-auto w-full"
             />
           </Reveal>
           <Reveal className="col-span-6 col-start-7 mt-20 lg:col-span-6 lg:col-start-8" delay={140} slow>
             <Photo
               photo={photos.scale}
-              sizes="(max-width: 1024px) 48vw, 28vw"
+              sizes="(max-width: 1023px) 48vw, 28vw"
               className="h-auto w-full"
             />
             <p className="mt-4 text-[0.72rem] leading-relaxed opacity-72">

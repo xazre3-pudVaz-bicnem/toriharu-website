@@ -109,13 +109,13 @@ export default function YakitoriPage() {
 
             <div className="grid grid-cols-12 gap-4 md:gap-6">
               <Reveal className="col-span-7" slow>
-                <Photo photo={photos.yakitoriLineup} sizes="(max-width: 1024px) 55vw, 27vw" className="h-auto w-full" />
+                <Photo photo={photos.yakitoriLineup} sizes="(max-width: 1023px) 55vw, 27vw" className="h-auto w-full" />
               </Reveal>
               <Reveal className="col-span-5 mt-16" delay={120} slow>
-                <Photo photo={photos.yakitoriKimo} sizes="(max-width: 1024px) 40vw, 20vw" className="h-auto w-full" />
+                <Photo photo={photos.yakitoriKimo} sizes="(max-width: 1023px) 40vw, 20vw" className="h-auto w-full" />
               </Reveal>
               <Reveal className="col-span-10 col-start-3" delay={200} slow>
-                <Photo photo={photos.yakitoriMomoGrill} sizes="(max-width: 1024px) 76vw, 36vw" className="h-auto w-full" />
+                <Photo photo={photos.yakitoriMomoGrill} sizes="(max-width: 1023px) 76vw, 36vw" className="h-auto w-full" />
                 <p className="mt-4 text-[0.74rem] leading-relaxed text-kinari/55">
                   炭の上で、色が変わっていくのを見ながら。
                 </p>

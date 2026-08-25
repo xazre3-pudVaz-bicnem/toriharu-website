@@ -193,6 +193,15 @@ body {
     gap: 1.3rem;
   }
 
+  /*
+   * 地図の枠。iframe はフォーカスが中のドキュメントへ移るため
+   * iframe 自身が :focus にならない。親側の :focus-within で枠を出す。
+   */
+  .map-frame:focus-within {
+    outline: 2px solid var(--color-tan);
+    outline-offset: 3px;
+  }
+
   /* ─ 和紙の質感（画像を使わない軽量な地紋）─ */
   .washi-grain {
     position: relative;

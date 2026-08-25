@@ -56,7 +56,7 @@ export default function HistorySection() {
             <Reveal slow>
               <Photo
                 photo={photos.sabaki02}
-                sizes="(max-width: 1024px) 92vw, 46vw"
+                sizes="(max-width: 1023px) 92vw, 46vw"
                 className="h-auto w-full"
               />
             </Reveal>

@@ -120,7 +120,7 @@ export default function MenuPage() {
             </div>
             <Photo
               photo={photos.showcaseMenu}
-              sizes="(max-width: 1024px) 92vw, 44vw"
+              sizes="(max-width: 1023px) 92vw, 44vw"
               className="h-auto w-full"
             />
           </Reveal>

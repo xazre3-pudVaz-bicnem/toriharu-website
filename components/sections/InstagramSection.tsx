@@ -29,7 +29,7 @@ export default function InstagramSection() {
         </Reveal>
 
         <Reveal delay={120} className="w-full max-w-sm justify-self-end md:w-64 lg:w-80">
-          <Photo photo={photos.kabayakiWrapped02} sizes="(max-width: 768px) 92vw, 20rem" className="h-auto w-full" />
+          <Photo photo={photos.kabayakiWrapped02} sizes="(max-width: 767px) 92vw, 20rem" className="h-auto w-full" />
         </Reveal>
       </div>
     </section>

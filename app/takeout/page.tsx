@@ -108,7 +108,7 @@ export default function TakeoutPage() {
       <section className="bg-sumi text-kinari">
         <div className="grid lg:grid-cols-2">
           <Reveal className="relative min-h-[52svh] lg:min-h-[80svh]" slow>
-            <Photo photo={photos.kabayakiWrapped02} fill sizes="(max-width: 1024px) 100vw, 50vw" position="center 45%" />
+            <Photo photo={photos.kabayakiWrapped02} fill sizes="(max-width: 1023px) 100vw, 50vw" position="center 45%" />
           </Reveal>
 
           <div className="flex items-center px-5 py-20 md:px-10 md:py-28 lg:px-20">
@@ -140,7 +140,7 @@ export default function TakeoutPage() {
               </p>
 
               <figure className="mt-12">
-                <Photo photo={photos.imgUnaju} sizes="(max-width: 1024px) 92vw, 32vw" className="h-auto w-full" />
+                <Photo photo={photos.imgUnaju} sizes="(max-width: 1023px) 92vw, 32vw" className="h-auto w-full" />
                 <figcaption className="mt-3 flex items-center gap-3 text-[0.72rem] text-kinari/55">
                   <span>届いたその日に、あたたかいごはんと。</span>
                 </figcaption>

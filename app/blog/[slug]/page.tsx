@@ -146,10 +146,10 @@ export default async function BlogPostPage({ params }: { params: Promise<Params>
               <aside className="lg:sticky lg:top-28 lg:self-start">
                 <nav aria-label="この記事の目次">
                   <p className="eyebrow text-tan">CONTENTS</p>
-                  <ul className="mt-6 space-y-3 border-l border-sumi/15 pl-4 text-[0.8rem] leading-[1.7]">
+                  <ul className="mt-6 space-y-1 border-l border-sumi/15 pl-4 text-[0.8rem] leading-[1.7]">
                     {headings.map((h) => (
                       <li key={h.id} className={h.level === 3 ? 'pl-3 opacity-70' : ''}>
-                        <a href={`#${h.id}`} className="underline-offset-4 hover:underline">
+                        <a href={`#${h.id}`} className="block py-1 underline-offset-4 hover:underline">
                           {h.text}
                         </a>
                       </li>

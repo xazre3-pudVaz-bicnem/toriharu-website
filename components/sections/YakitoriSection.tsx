@@ -14,15 +14,15 @@ export default function YakitoriSection() {
             <Reveal className="col-span-12" slow>
               <Photo
                 photo={photos.yakitoriKawa}
-                sizes="(max-width: 1024px) 92vw, 52vw"
+                sizes="(max-width: 1023px) 92vw, 52vw"
                 className="h-auto w-full"
               />
             </Reveal>
             <Reveal className="col-span-6 -mt-16 sm:-mt-24" delay={130} slow>
-              <Photo photo={photos.yakitoriNegimaGrill} sizes="(max-width: 1024px) 46vw, 26vw" className="h-auto w-full" />
+              <Photo photo={photos.yakitoriNegimaGrill} sizes="(max-width: 1023px) 46vw, 26vw" className="h-auto w-full" />
             </Reveal>
             <Reveal className="col-span-6 mt-4" delay={210} slow>
-              <Photo photo={photos.yakitoriTray} sizes="(max-width: 1024px) 46vw, 26vw" className="h-auto w-full" />
+              <Photo photo={photos.yakitoriTray} sizes="(max-width: 1023px) 46vw, 26vw" className="h-auto w-full" />
             </Reveal>
           </div>
 

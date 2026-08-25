@@ -11,10 +11,12 @@ export default function Breadcrumbs({ crumbs, tone = 'light' }: { crumbs: Crumb[
           return (
             <li key={c.href} className="flex items-center gap-2">
               {last ? (
-                <span aria-current="page">{c.name}</span>
+                <span aria-current="page" className="inline-block py-1.5">
+                  {c.name}
+                </span>
               ) : (
                 <>
-                  <Link href={c.href} className="underline-offset-4 hover:underline">
+                  <Link href={c.href} className="inline-block py-1.5 underline-offset-4 hover:underline">
                     {c.name}
                   </Link>
                   <span aria-hidden>/</span>

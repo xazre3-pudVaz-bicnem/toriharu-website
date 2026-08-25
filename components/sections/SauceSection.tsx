@@ -31,13 +31,13 @@ export default function SauceSection() {
 
           <div className="grid grid-cols-12 gap-4 md:gap-6">
             <Reveal className="col-span-12 sm:col-span-7" slow>
-              <Photo photo={photos.tareDip} sizes="(max-width: 640px) 92vw, (max-width: 1024px) 52vw, 30vw" className="h-auto w-full" />
+              <Photo photo={photos.tareDip} sizes="(max-width: 639px) 92vw, (max-width: 1023px) 52vw, 30vw" className="h-auto w-full" />
               <p className="mt-4 text-[0.72rem] leading-relaxed opacity-60">
                 焼いては、くぐらせる。何度も。
               </p>
             </Reveal>
             <Reveal className="col-span-7 col-start-6 -mt-14 sm:col-span-5 sm:col-start-8 sm:mt-24" delay={140} slow>
-              <Photo photo={photos.tareBottles} sizes="(max-width: 640px) 58vw, (max-width: 1024px) 38vw, 20vw" className="h-auto w-full" />
+              <Photo photo={photos.tareBottles} sizes="(max-width: 639px) 58vw, (max-width: 1023px) 38vw, 20vw" className="h-auto w-full" />
             </Reveal>
           </div>
         </div>
