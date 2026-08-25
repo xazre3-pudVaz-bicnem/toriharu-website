@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 
 import PageHero from '@/components/layout/PageHero';
-import Photo, { ImageNote } from '@/components/ui/Photo';
+import Photo from '@/components/ui/Photo';
 import Reveal from '@/components/ui/Reveal';
 import SectionLabel from '@/components/ui/SectionLabel';
 import JsonLd from '@/components/ui/JsonLd';
@@ -84,9 +84,6 @@ export default function YakitoriPage() {
           <figure className="relative h-[56svh] w-full md:h-[76svh]">
             <Photo photo={photos.imgYakitoriPlate} fill sizes="100vw" position="center 55%" />
             <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-sumi via-transparent to-sumi/40" />
-            <figcaption className="absolute bottom-5 right-5 md:bottom-8 md:right-10">
-              <ImageNote photo={photos.imgYakitoriPlate} className="text-kinari" />
-            </figcaption>
           </figure>
         </Reveal>
 

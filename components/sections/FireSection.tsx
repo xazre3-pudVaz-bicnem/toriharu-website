@@ -1,4 +1,4 @@
-import Photo, { ImageNote } from '@/components/ui/Photo';
+import Photo from '@/components/ui/Photo';
 import Reveal from '@/components/ui/Reveal';
 import SectionLabel from '@/components/ui/SectionLabel';
 import { photos } from '@/data/photos';
@@ -11,9 +11,6 @@ export default function FireSection() {
         <figure className="relative h-[52svh] w-full md:h-[72svh]">
           <Photo photo={photos.imgCharcoalUnagi} fill sizes="100vw" position="center 55%" />
           <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-sumi via-sumi/20 to-sumi/40" />
-          <figcaption className="absolute bottom-6 right-5 md:bottom-10 md:right-10">
-            <ImageNote photo={photos.imgCharcoalUnagi} className="text-kinari" />
-          </figcaption>
         </figure>
       </Reveal>
 
@@ -31,7 +28,6 @@ export default function FireSection() {
                 <Photo photo={photos.imgCraftHands} sizes="(max-width: 1024px) 92vw, 44vw" className="h-auto w-full" />
                 <figcaption className="mt-3 flex items-center gap-3 text-[0.72rem] text-kinari/55">
                   <span>炭の上では、目と耳と鼻がすべて。</span>
-                  <ImageNote photo={photos.imgCraftHands} />
                 </figcaption>
               </figure>
             </Reveal>

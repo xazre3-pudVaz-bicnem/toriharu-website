@@ -1,4 +1,4 @@
-import Photo, { ImageNote } from '@/components/ui/Photo';
+import Photo from '@/components/ui/Photo';
 import Reveal from '@/components/ui/Reveal';
 import SectionLabel from '@/components/ui/SectionLabel';
 import { photos } from '@/data/photos';
@@ -34,7 +34,6 @@ export default function BoneCracker() {
               <Photo photo={photos.imgHonesenbei} sizes="(max-width: 1024px) 92vw, 34vw" className="h-auto w-full" />
               <figcaption className="mt-3 flex items-center gap-3 text-[0.72rem] text-kinari/55">
                 <span>器に盛れば、そのまま一品に。</span>
-                <ImageNote photo={photos.imgHonesenbei} />
               </figcaption>
             </figure>
           </Reveal>

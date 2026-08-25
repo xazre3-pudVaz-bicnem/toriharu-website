@@ -57,10 +57,3 @@ export default function Photo({
   );
 }
 
-/** イメージ写真であることを控えめに明記するキャプション */
-export function ImageNote({ photo, className = '' }: { photo: PhotoData; className?: string }) {
-  if (photo.kind !== 'image') return null;
-  return (
-    <span className={`text-[0.62rem] tracking-[0.2em] opacity-60 ${className}`}>※イメージ</span>
-  );
-}

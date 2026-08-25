@@ -4,7 +4,7 @@
  *
  * kind:
  *   'shop'  … トリハルの実写（店舗提供）
- *   'image' … イメージ写真。店舗の実写ではないため、画面上でも「イメージ」と明記する
+ *   'image' … イメージ写真（店舗の実写ではない）。差し替え対象を見分けるための内部管理用
  */
 
 export type Photo = {
@@ -181,52 +181,59 @@ export const photos = {
     kind: 'shop',
   },
 
-  /* ── イメージ写真（店舗の実写ではありません）─────── */
+  /* ── イメージ写真（店舗の実写ではありません／差し替え候補）─────── */
+  heroYakitoriTare: {
+    src: '/photos/hero-yakitori-tare.jpg',
+    alt: '炭火の上でタレを刷毛で塗り重ねられていく、もも串とねぎ串',
+    width: 1536,
+    height: 1024,
+    kind: 'image',
+  },
   imgCharcoalUnagi: {
     src: '/photos/img-charcoal-unagi.jpg',
-    alt: '炭火の上でタレをまとった鰻が焼かれ、白い煙が立ちのぼる様子（イメージ）',
+    alt: '炭火の上でタレをまとった鰻が焼かれ、白い煙が立ちのぼる様子',
     width: 1672,
     height: 941,
     kind: 'image',
   },
   imgYakitoriPlate: {
     src: '/photos/img-yakitori-plate.jpg',
-    alt: '陶器の皿に並べられた、もも・ねぎま・皮・肝などの焼き鳥（イメージ）',
+    alt: '陶器の皿に並べられた、もも・ねぎま・皮・肝などの焼き鳥',
     width: 1448,
     height: 1086,
     kind: 'image',
   },
   imgCraftHands: {
     src: '/photos/img-craft-hands.jpg',
-    alt: '炭火の焼き台に向かい、串を手に鰻を焼く職人の手元（イメージ）',
+    alt: '炭火の焼き台に向かい、串を手に鰻を焼く職人の手元',
     width: 1536,
     height: 1024,
     kind: 'image',
   },
   imgTareBrush: {
     src: '/photos/img-tare-brush.jpg',
-    alt: '刷毛でタレを塗り重ねながら、炭火で焼き上げていく串（イメージ）',
+    alt: '刷毛でタレを塗り重ねながら、炭火で焼き上げていく串',
     width: 1536,
     height: 1024,
     kind: 'image',
   },
   imgTakeout: {
     src: '/photos/img-takeout.jpg',
-    alt: '折箱に詰めた鰻と、経木の箱に並べた焼き鳥、紙袋や風呂敷などの持ち帰りの支度（イメージ）',
+    alt: '折箱に詰めた鰻と、経木の箱に並べた焼き鳥、紙袋や風呂敷などの持ち帰りの支度',
     width: 1536,
     height: 1024,
     kind: 'image',
   },
   imgUnaju: {
     src: '/photos/img-unaju.jpg',
-    alt: '重箱のごはんの上に蒲焼をのせ、山椒の葉を添えた食卓の一皿（イメージ）',
+    alt: '重箱のごはんの上に蒲焼をのせ、山椒の葉を添えた食卓の一皿',
     width: 1122,
     height: 1402,
     kind: 'image',
   },
   imgHonesenbei: {
     src: '/photos/img-honesenbei.jpg',
-    alt: '器に盛りつけた鰻の骨せんべいと、袋に詰めたところ（イメージ）',
+    alt: '器に盛りつけた鰻の骨せんべいと、袋に詰めたところ',
     width: 1254,
     height: 1254,
     kind: 'image',

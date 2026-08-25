@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 
 import PageHero from '@/components/layout/PageHero';
-import Photo, { ImageNote } from '@/components/ui/Photo';
+import Photo from '@/components/ui/Photo';
 import Reveal from '@/components/ui/Reveal';
 import SectionLabel from '@/components/ui/SectionLabel';
 import JsonLd from '@/components/ui/JsonLd';
@@ -143,7 +143,6 @@ export default function TakeoutPage() {
                 <Photo photo={photos.imgUnaju} sizes="(max-width: 1024px) 92vw, 32vw" className="h-auto w-full" />
                 <figcaption className="mt-3 flex items-center gap-3 text-[0.72rem] text-kinari/55">
                   <span>届いたその日に、あたたかいごはんと。</span>
-                  <ImageNote photo={photos.imgUnaju} />
                 </figcaption>
               </figure>
             </Reveal>

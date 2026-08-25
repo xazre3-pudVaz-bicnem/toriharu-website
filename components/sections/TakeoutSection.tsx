@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import Photo, { ImageNote } from '@/components/ui/Photo';
+import Photo from '@/components/ui/Photo';
 import Reveal from '@/components/ui/Reveal';
 import SectionLabel from '@/components/ui/SectionLabel';
 import { photos } from '@/data/photos';
@@ -20,9 +20,6 @@ export default function TakeoutSection() {
         <figure className="relative h-[50svh] w-full md:h-[70svh]">
           <Photo photo={photos.imgTakeout} fill sizes="100vw" position="center 60%" />
           <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-sumi via-transparent to-sumi/50" />
-          <figcaption className="absolute bottom-6 right-5 md:bottom-10 md:right-10">
-            <ImageNote photo={photos.imgTakeout} className="text-kinari" />
-          </figcaption>
         </figure>
       </Reveal>
 

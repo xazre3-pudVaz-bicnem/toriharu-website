@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 
 import PageHero from '@/components/layout/PageHero';
-import Photo, { ImageNote } from '@/components/ui/Photo';
+import Photo from '@/components/ui/Photo';
 import Reveal from '@/components/ui/Reveal';
 import SectionLabel from '@/components/ui/SectionLabel';
 import JsonLd from '@/components/ui/JsonLd';
@@ -219,7 +219,6 @@ export default function UnagiPage() {
               <Photo photo={photos.imgUnaju} sizes="(max-width: 1024px) 92vw, 42vw" className="h-auto w-full" />
               <figcaption className="mt-3 flex items-center gap-3 text-[0.74rem] opacity-60">
                 <span>ご家庭で、あたたかいごはんの上に。</span>
-                <ImageNote photo={photos.imgUnaju} />
               </figcaption>
             </figure>
 

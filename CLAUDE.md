@@ -72,7 +72,8 @@
   body に `overflow-x: hidden` を足すと sticky が壊れるので入れない
 - `next/image` のラッパーは `components/ui/Photo.tsx`。`fill` を使うときは
   親に `relative` と高さが必要
-- イメージ写真（`kind: 'image'`）には必ず「※イメージ」を表示する
+- `data/photos.ts` の `kind` は内部管理用（画面には出さない）。実写が用意でき次第、
+  `kind: 'image'` のものから差し替える
 
 ---
 

@@ -1,4 +1,4 @@
-import Photo, { ImageNote } from '@/components/ui/Photo';
+import Photo from '@/components/ui/Photo';
 import Breadcrumbs from '@/components/ui/Breadcrumbs';
 import type { Crumb } from '@/lib/jsonld';
 import type { Photo as PhotoData } from '@/data/photos';
@@ -28,9 +28,6 @@ export default function PageHero({ en, title, lead, photo, crumbs, position }: P
               {title}
             </h1>
           </div>
-        </div>
-        <div className="absolute bottom-3 right-4 md:bottom-4 md:right-6">
-          <ImageNote photo={photo} className="text-kinari" />
         </div>
       </div>
 

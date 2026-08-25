@@ -1,4 +1,4 @@
-import Photo, { ImageNote } from '@/components/ui/Photo';
+import Photo from '@/components/ui/Photo';
 import Reveal from '@/components/ui/Reveal';
 import SectionLabel from '@/components/ui/SectionLabel';
 import { photos } from '@/data/photos';
@@ -38,15 +38,6 @@ export default function SauceSection() {
             </Reveal>
             <Reveal className="col-span-7 col-start-6 -mt-14 sm:col-span-5 sm:col-start-8 sm:mt-24" delay={140} slow>
               <Photo photo={photos.tareBottles} sizes="(max-width: 640px) 58vw, (max-width: 1024px) 38vw, 20vw" className="h-auto w-full" />
-            </Reveal>
-            <Reveal className="col-span-12 mt-4" delay={220} slow>
-              <figure>
-                <Photo photo={photos.imgTareBrush} sizes="(max-width: 1024px) 92vw, 48vw" className="h-auto w-full" />
-                <figcaption className="mt-3 flex items-center gap-3 text-[0.72rem] opacity-60">
-                  <span>刷毛でタレを重ねながら、火に戻す。</span>
-                  <ImageNote photo={photos.imgTareBrush} />
-                </figcaption>
-              </figure>
             </Reveal>
           </div>
         </div>
