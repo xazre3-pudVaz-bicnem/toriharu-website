@@ -141,6 +141,13 @@ export const photos = {
   },
 
   /* ── イメージ写真（店舗の実写ではありません／差し替え候補）─────── */
+  heroUnagiCharcoal: {
+    src: '/photos/hero-unagi-charcoal.jpg',
+    alt: '炭火の上でタレをまとった鰻の蒲焼が焼かれ、白い煙が立ちのぼる様子',
+    width: 1672,
+    height: 941,
+    kind: 'image',
+  },
   imgYakitoriPlate: {
     src: '/photos/img-yakitori-plate.jpg',
     alt: '陶器の皿に並べられた、もも・ねぎま・皮・肝などの焼き鳥',

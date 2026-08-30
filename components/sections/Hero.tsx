@@ -10,14 +10,14 @@ export default function Hero() {
   return (
     <section className="relative min-h-[88svh] w-full overflow-hidden bg-sumi md:min-h-[100svh]">
       <div className="absolute inset-0">
-        {/* 横長の写真。スマホでは蒲焼が中心に来るよう画角をずらす */}
+        {/* 横長の写真。スマホでは蒲焼と炭火が中心に来るよう画角をずらす */}
         <Photo
-          photo={photos.kabayakiShowcase}
+          photo={photos.heroUnagiCharcoal}
           fill
           priority
-          quality={82}
+          quality={84}
           sizes="100vw"
-          className="object-[58%_50%] md:object-[52%_48%]"
+          className="object-[78%_50%] md:object-[58%_55%]"
         />
       </div>
 
