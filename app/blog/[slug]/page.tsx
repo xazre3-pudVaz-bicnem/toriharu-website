@@ -125,7 +125,7 @@ export default async function BlogPostPage({ params }: { params: Promise<Params>
                 <h2 className="display text-lg tracking-[0.06em]">トリハルのご案内</h2>
                 <p className="mt-4 max-w-[34rem] text-[0.88rem] leading-[2]">
                   {shop.legalName}は、{shop.address.full}にある焼き鳥と鰻の持ち帰り専門店です。営業時間は
-                  {shop.hours.label}、定休日は{shop.hours.closedDays.join('・')}。
+                  {shop.hours.label}、定休日は{shop.hours.closedLabel}。
                   ご予約・ご相談は<a href={shop.telHref} className="text-tan underline underline-offset-4">{shop.tel}</a>
                   まで。
                 </p>

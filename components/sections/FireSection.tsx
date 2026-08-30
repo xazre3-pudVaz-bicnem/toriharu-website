@@ -6,10 +6,10 @@ import { photos } from '@/data/photos';
 export default function FireSection() {
   return (
     <section className="relative bg-sumi text-kinari">
-      {/* 全幅の炭火 */}
+      {/* 全幅の焼き場 */}
       <Reveal slow>
         <figure className="relative h-[52svh] w-full md:h-[72svh]">
-          <Photo photo={photos.imgCharcoalUnagi} fill sizes="100vw" position="center 55%" />
+          <Photo photo={photos.yakitoriSmoke} fill sizes="100vw" position="center 55%" />
           <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-sumi via-sumi/20 to-sumi/40" />
         </figure>
       </Reveal>
@@ -17,19 +17,17 @@ export default function FireSection() {
       <div className="mx-auto max-w-[92rem] px-5 pb-24 md:px-10 md:pb-36">
         <div className="grid gap-16 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-24">
           <div className="order-2 grid grid-cols-12 gap-4 md:gap-6 lg:order-1">
-            <Reveal className="col-span-6" slow>
-              <Photo photo={photos.shirayaki02} sizes="(max-width: 1023px) 46vw, 24vw" className="h-auto w-full" />
+            <Reveal className="col-span-12" slow>
+              <Photo photo={photos.yakitoriKawa} sizes="(max-width: 1023px) 92vw, 44vw" className="h-auto w-full" />
             </Reveal>
-            <Reveal className="col-span-6 mt-16" delay={120} slow>
-              <Photo photo={photos.yakitoriSmoke} sizes="(max-width: 1023px) 46vw, 24vw" className="h-auto w-full" />
+            <Reveal className="col-span-7 mt-2" delay={120} slow>
+              <Photo photo={photos.yakitoriMomoGrill} sizes="(max-width: 1023px) 55vw, 26vw" className="h-auto w-full" />
             </Reveal>
-            <Reveal className="col-span-12 mt-2" delay={200} slow>
-              <figure>
-                <Photo photo={photos.imgCraftHands} sizes="(max-width: 1023px) 92vw, 44vw" className="h-auto w-full" />
-                <figcaption className="mt-3 flex items-center gap-3 text-[0.72rem] text-kinari/55">
-                  <span>炭の上では、目と耳と鼻がすべて。</span>
-                </figcaption>
-              </figure>
+            <Reveal className="col-span-5 mt-10" delay={200} slow>
+              <Photo photo={photos.tareBottles} sizes="(max-width: 1023px) 40vw, 19vw" className="h-auto w-full" />
+              <p className="mt-3 text-[0.72rem] leading-relaxed text-kinari/60">
+                同じタレを、毎日つぎ足しながら。
+              </p>
             </Reveal>
           </div>
 

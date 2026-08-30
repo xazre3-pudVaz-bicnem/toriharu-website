@@ -51,11 +51,8 @@ export default function UnagiSection() {
           </Reveal>
 
           <div className="grid grid-cols-12 gap-4 md:gap-6">
-            <Reveal className="col-span-7" slow>
-              <Photo photo={photos.sabaki01} sizes="(max-width: 1023px) 55vw, 27vw" className="h-auto w-full" />
-            </Reveal>
-            <Reveal className="col-span-5 self-end" delay={120} slow>
-              <Photo photo={photos.unagiOnGrill01} sizes="(max-width: 1023px) 40vw, 20vw" className="h-auto w-full" />
+            <Reveal className="col-span-12" slow>
+              <Photo photo={photos.kabayakiShowcase} sizes="(max-width: 1023px) 92vw, 46vw" className="h-auto w-full" />
             </Reveal>
             <Reveal className="col-span-9 col-start-4 mt-2" delay={200} slow>
               <Photo photo={photos.kabayakiTray} sizes="(max-width: 1023px) 70vw, 34vw" className="h-auto w-full" />

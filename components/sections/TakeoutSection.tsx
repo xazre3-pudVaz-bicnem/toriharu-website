@@ -28,13 +28,13 @@ export default function TakeoutSection() {
           <Reveal className="lg:sticky lg:top-28 lg:self-start">
             <SectionLabel index="10" en="TAKEOUT" className="text-honoo" />
             <h2 className="display mt-8 text-[clamp(1.9rem,7vw,3.4rem)] leading-[1.45] tracking-[0.08em]">
-              焼きたてを、
+              その日に焼いたものを、
               <br />
               持ち帰る。
             </h2>
             <div className="mt-10 max-w-[34rem] space-y-6 text-[0.94rem] leading-[2.1] text-kinari/85 md:text-base">
               <p>
-                トリハルに客席はありません。焼いたものを包んで、お渡しする。それだけの店です。だからこそ、家に着いてからがいちばんおいしい、という焼き方をしています。
+                トリハルに客席はありません。その日に焼いたものを包んで、お渡しする。それだけの店です。だからこそ、家に着いてからがいちばんおいしい、という焼き方をしています。
               </p>
               <p>
                 串は1本から。鰻は一尾から。「今日は二本だけ」でも、どうぞ気兼ねなく。

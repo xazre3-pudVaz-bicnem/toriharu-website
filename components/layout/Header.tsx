@@ -122,7 +122,7 @@ export default function Header() {
               {shop.tel}
             </a>
             <p className="text-[0.78rem] leading-relaxed opacity-70">
-              {shop.hours.label}／定休日 {shop.hours.closedDays.join('・')}
+              {shop.hours.label}／定休日 {shop.hours.closedLabel}
               <br />
               {shop.address.full}
             </p>

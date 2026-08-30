@@ -69,7 +69,7 @@ export default function FaqPage() {
               {shop.tel}
             </a>
             <p className="mt-3 text-[0.82rem] opacity-70">
-              受付 {shop.hours.label}／定休日 {shop.hours.closedDays.join('・')}
+              受付 {shop.hours.label}／定休日 {shop.hours.closedLabel}
             </p>
 
             <div className="mt-10 flex flex-wrap gap-x-10 gap-y-4">

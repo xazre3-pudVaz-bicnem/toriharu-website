@@ -14,6 +14,13 @@ const dayMap: Record<string, string> = {
 
 const ALL_DAYS = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
+/*
+ * OpeningHoursSpecification は曜日単位でしか書けないため、
+ * 毎週の定休日（火曜）だけを反映する。
+ * 「第3水曜日」は構造化データでは正確に表せないので入れない
+ * （水曜を全休にすると、第3週以外の水曜まで休みだと誤って伝わるため）。
+ * 画面上には shop.hours.closedLabel / closedNote で明記している。
+ */
 const openDays = ALL_DAYS.filter(
   (d) => !shop.hours.closedDays.map((c) => dayMap[c]).includes(d),
 );

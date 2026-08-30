@@ -39,7 +39,7 @@ const values = [
   {
     en: 'AUTHORITY',
     title: '同じ場所で、百二十年以上',
-    body: '明治に南大工町で始めて、いまも同じ町にいます。支店は出していません。うまくやる方法があったとしても、一軒でやるほうが、目が届きます。',
+    body: '明治に西ノ店で始め、区画整理などを経て南大工町へ。町は移りましたが、商いは一軒のまま続けています。支店は出していません。うまくやる方法があったとしても、一軒でやるほうが、目が届きます。',
   },
   {
     en: 'TRUST',
@@ -54,7 +54,7 @@ export default function AboutPage() {
       <PageHero
         en="ABOUT"
         title="トリハルについて"
-        lead="和歌山市南大工町、フォルテワジマの西隣。明治に創業して、120年以上ここで焼き鳥と鰻を売ってきました。特別な日のための店というより、和歌山の人の日常のなかにあった店です。"
+        lead="和歌山市南大工町、フォルテワジマの西隣。明治に西ノ店で創業し、区画整理などを経ていまの場所へ。120年以上、和歌山で焼き鳥と鰻を売ってきました。特別な日のための店というより、和歌山の人の日常のなかにあった店です。"
         photo={photos.storefront}
         crumbs={crumbs}
         position="center 42%"
@@ -72,7 +72,7 @@ export default function AboutPage() {
             </h2>
             <div className="mt-10 max-w-[34rem] space-y-6 text-[0.94rem] leading-[2.1] md:text-base">
               <p>
-                トリハルは、明治のころに和歌山市の南大工町で始まりました。以来、扱っているものはほとんど変わっていません。鰻と、焼き鳥。それを焼いて、包んで、お渡しする。
+                トリハルが始まったのは、明治のころ。最初の店は、西ノ店にあったと聞いています。その後の区画整理などを経て、いまの南大工町へ移りました。町は変わりましたが、扱っているものはほとんど変わっていません。鰻と、焼き鳥。それを焼いて、包んで、お渡しする。
               </p>
               <p>
                 派手な出来事があった店ではありません。長く続いた理由も、たぶん特別なものではないと思います。毎朝きちんと鰻を捌いて、炭に火を入れて、焼いたぶんだけ売る。その繰り返しを、途切れさせなかった、というだけのことです。
@@ -88,7 +88,7 @@ export default function AboutPage() {
 
           <div className="grid grid-cols-12 gap-4 md:gap-6">
             <Reveal className="col-span-7" slow>
-              <Photo photo={photos.sabaki02} sizes="(max-width: 1023px) 55vw, 26vw" className="h-auto w-full" />
+              <Photo photo={photos.kabayakiWrapped02} sizes="(max-width: 1023px) 55vw, 26vw" className="h-auto w-full" />
             </Reveal>
             <Reveal className="col-span-5 mt-20" delay={120} slow>
               <Photo photo={photos.sansho} sizes="(max-width: 1023px) 40vw, 19vw" className="h-auto w-full" />
@@ -137,7 +137,7 @@ export default function AboutPage() {
                 ['所在地', shop.address.full],
                 ['電話番号', shop.tel],
                 ['営業時間', shop.hours.label],
-                ['定休日', shop.hours.closedDays.join('・')],
+                ['定休日', shop.hours.closedLabel],
                 ['事業内容', '鰻・焼き鳥の製造および販売（持ち帰り専門）、鶏肉・生肉の販売'],
                 ['店舗数', '1店舗（和歌山市南大工町）'],
               ].map(([k, v]) => (

@@ -5,9 +5,9 @@ import { photos } from '@/data/photos';
 const strip = [
   { photo: photos.kabayakiShowcase, caption: '店頭のショーケースへ' },
   { photo: photos.yakitoriMomoGrill, caption: 'ももやきとり' },
-  { photo: photos.shirayaki03, caption: '白焼き' },
+  { photo: photos.kabayakiWrapped01, caption: '竹皮に載せて' },
   { photo: photos.yakitoriKimo, caption: 'とり肝' },
-  { photo: photos.unagiOnGrill02, caption: '素焼きの途中' },
+  { photo: photos.liveEels, caption: '朝の桶' },
   { photo: photos.yakitoriLineup, caption: '焼き場の朝' },
 ];
 

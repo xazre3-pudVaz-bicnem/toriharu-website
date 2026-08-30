@@ -4,20 +4,20 @@ import { shop } from '@/data/shop';
 
 /**
  * ファーストビュー。CTAボタンは置かない。
- * 写真は炭火でタレを重ねる一枚を全面に。
+ * 店の主役は鰻なので、焼き上がった蒲焼を全面に。
  */
 export default function Hero() {
   return (
     <section className="relative min-h-[88svh] w-full overflow-hidden bg-sumi md:min-h-[100svh]">
       <div className="absolute inset-0">
-        {/* 横長の写真なので、スマホでは串と炭火が中心に来るよう画角をずらす */}
+        {/* 横長の写真。スマホでは蒲焼が中心に来るよう画角をずらす */}
         <Photo
-          photo={photos.heroYakitoriTare}
+          photo={photos.kabayakiShowcase}
           fill
           priority
           quality={82}
           sizes="100vw"
-          className="scale-[1.02] object-[40%_60%] md:object-[56%_54%]"
+          className="object-[58%_50%] md:object-[52%_48%]"
         />
       </div>
 

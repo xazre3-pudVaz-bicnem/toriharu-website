@@ -37,18 +37,18 @@ const steps = [
     n: '02',
     title: '捌く',
     body: '毎朝、店の作業台で一尾ずつ捌きます。目打ちを打ち、背から開き、中骨を外す。骨は捨てずに骨せんべいへ。',
-    photo: photos.sabaki01,
+    photo: photos.liveEels,
   },
   {
     n: '03',
     title: '素焼きにする',
     body: '炭火にかけ、まずはタレを使わずに焼きます。余分な脂を落とし、身を立たせる工程です。ここで仕上げたものが白焼き。',
-    photo: photos.shirayaki01,
+    photo: photos.tareBottles,
   },
   {
     n: '04',
     title: 'タレをくぐらせる',
-    body: '創業以来つぎ足してきた秘伝のタレへ。くぐらせては焼き、くぐらせては焼き、を何度か繰り返します。',
+    body: '創業以来つぎ足してきた秘伝のタレへ。刷毛で塗るのではなく、鍋のタレに直接くぐらせます。くぐらせては焼き、くぐらせては焼き、を何度か繰り返します。',
     photo: photos.tareDip,
   },
   {
@@ -151,7 +151,7 @@ export default function UnagiPage() {
                   素焼きにした鰻を、秘伝のタレに何度もくぐらせながら焼き上げたもの。表面はタレが焦げて香ばしく、中はふっくら。トリハルでいちばん多く出る品です。
                 </p>
                 <p>
-                  店頭表示は一尾およそ4,000円〜5,000円（税込・秘伝ダレ込み）。鰻の大きさと仕入れによって変わります。
+                  一尾3,800円〜（税込・秘伝ダレ込み）。小ぶりなものから大きなものまであり、鰻の大きさと仕入れによって変わります。
                 </p>
                 <p className="text-[0.86rem] opacity-75">
                   お召し上がりの際は、紀州の山椒（香山椒）の小袋もご一緒にどうぞ。
@@ -160,7 +160,7 @@ export default function UnagiPage() {
             </Reveal>
 
             <Reveal slow delay={120}>
-              <Photo photo={photos.shirayaki03} sizes="(max-width: 1023px) 92vw, 46vw" className="h-auto w-full" />
+              <Photo photo={photos.kabayakiWrapped02} sizes="(max-width: 1023px) 92vw, 46vw" className="h-auto w-full" />
               <h3 className="display mt-8 text-2xl tracking-[0.06em]">鰻の白焼き</h3>
               <div className="mt-5 space-y-4 text-[0.92rem] leading-[2.05]">
                 <p>
@@ -231,7 +231,7 @@ export default function UnagiPage() {
                 {shop.tel}
               </a>
               <p className="mt-2 text-[0.8rem] opacity-65">
-                受付時間 {shop.hours.label}／定休日 {shop.hours.closedDays.join('・')}
+                受付時間 {shop.hours.label}／定休日 {shop.hours.closedLabel}
               </p>
               <Link href="/takeout" className="rule-link mt-8 inline-flex text-tan">
                 持ち帰り・発送のご案内

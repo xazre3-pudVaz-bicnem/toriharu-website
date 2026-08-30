@@ -86,7 +86,7 @@ export default function SeasonalPage() {
               {shop.tel}
             </a>
             <p className="text-[0.82rem] opacity-70">
-              受付 {shop.hours.label}／定休日 {shop.hours.closedDays.join('・')}
+              受付 {shop.hours.label}／定休日 {shop.hours.closedLabel}
             </p>
             <Link href="/takeout" className="rule-link text-tan">
               持ち帰り・発送について

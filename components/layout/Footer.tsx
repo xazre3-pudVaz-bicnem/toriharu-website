@@ -29,7 +29,7 @@ export default function Footer() {
               <p>
                 営業時間 {shop.hours.label}
                 <br />
-                定休日 {shop.hours.closedDays.join('・')}
+                定休日 {shop.hours.closedLabel}
               </p>
             </address>
 

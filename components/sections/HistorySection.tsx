@@ -22,8 +22,8 @@ const kept = [
     body: '創業のころからのタレを、毎日つぎ足しながら使っています。鰻の脂が落ちて、また次の鰻がまとう。',
   },
   {
-    title: '南大工町で',
-    body: '支店は出さず、南大工町の一軒だけで商いを続けています。この店に来ていただく、その形のままで。',
+    title: '和歌山で',
+    body: '始まりは西ノ店。区画整理などを経て、いまは南大工町の一軒だけで商いを続けています。この店に来ていただく、その形のままで。',
   },
 ];
 
@@ -41,7 +41,7 @@ export default function HistorySection() {
             </h2>
             <div className="mt-10 max-w-[34rem] space-y-6 text-[0.94rem] leading-[2.1] md:text-base">
               <p>
-                明治に創業して、百二十年以上。長く続いた店には、たいてい派手な話はありません。同じ場所で、同じ仕事を、毎日繰り返してきただけです。
+                明治に創業して、百二十年以上。始まりは西ノ店で、区画整理などを経ていまの南大工町へ移りました。長く続いた店には、たいてい派手な話はありません。同じ仕事を、毎日繰り返してきただけです。
               </p>
               <p>
                 和歌山の人にとってのトリハルは、記念日の店というより、いつもの店だったと思います。夕方に寄って、串を何本か包んでもらう。用があれば鰻を頼む。そういう日常のなかに、ずっとありました。
@@ -55,7 +55,7 @@ export default function HistorySection() {
           <div>
             <Reveal slow>
               <Photo
-                photo={photos.sabaki02}
+                photo={photos.kabayakiWrapped01}
                 sizes="(max-width: 1023px) 92vw, 46vw"
                 className="h-auto w-full"
               />

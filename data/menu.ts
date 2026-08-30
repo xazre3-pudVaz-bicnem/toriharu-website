@@ -47,7 +47,7 @@ export const unagiItems: MenuItem[] = [
     en: 'Unagi Kabayaki',
     price: null,
     unit: '一尾',
-    note: '店頭表示は一尾およそ4,000円〜5,000円（税込・秘伝ダレ込み）。鰻の大きさや仕入れにより変わります。',
+    note: '一尾3,800円〜（税込・秘伝ダレ込み）。小ぶりなものから大きなものまであり、鰻の大きさや仕入れにより変わります。',
     availability: 'regular',
   },
   {

@@ -68,7 +68,7 @@ export default function TakeoutPage() {
     <>
       <PageHero
         en="TAKEOUT"
-        title="焼きたてを、持ち帰る"
+        title="その日に焼いたものを、持ち帰る"
         lead="トリハルに客席はありません。焼いたものを包んでお渡しする、持ち帰りのための店です。ご家庭の食卓へ、晩酌の肴に、人が集まる日のごちそうに。上焼き鰻・白焼きは全国発送も承っています。"
         photo={photos.imgTakeout}
         crumbs={crumbs}
@@ -134,7 +134,7 @@ export default function TakeoutPage() {
                 {shop.tel}
               </a>
               <p className="mt-3 text-[0.82rem] text-kinari/70">
-                受付 {shop.hours.label}／定休日 {shop.hours.closedDays.join('・')}
+                受付 {shop.hours.label}／定休日 {shop.hours.closedLabel}
                 <br />
                 {shop.hours.closedNote}
               </p>
@@ -159,7 +159,7 @@ export default function TakeoutPage() {
               家に着いてからの、ひと手間。
             </h2>
             <p className="mt-8 max-w-[36rem] text-[0.92rem] leading-[2.05] opacity-85">
-              買ってすぐが、いちばんおいしい状態です。少し時間が経ったときは、次のようにしていただくと、焼きたてに近づきます。
+              買ってすぐが、いちばんおいしい状態です。少し時間が経ったときは、次のようにしていただくと、焼いたばかりの状態に近づきます。
             </p>
           </Reveal>
 

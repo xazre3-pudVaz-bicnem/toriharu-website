@@ -14,7 +14,7 @@ import { shop } from '@/data/shop';
 export const metadata: Metadata = buildMetadata({
   title: '店舗・アクセス｜和歌山市南大工町20（フォルテワジマ西隣）',
   description:
-    'トリハルの所在地・営業時間・アクセスのご案内です。〒640-8032 和歌山県和歌山市南大工町20、フォルテワジマの西隣。営業時間8:30〜17:00、定休日は火曜日。TEL 073-422-4088。',
+    'トリハルの所在地・営業時間・アクセスのご案内です。〒640-8032 和歌山県和歌山市南大工町20、フォルテワジマの西隣。営業時間8:30〜17:00、定休日は火曜日と第3水曜日。TEL 073-422-4088。',
   path: '/access',
   ogImage: '/photos/storefront.jpg',
 });
@@ -49,7 +49,7 @@ export default function AccessPage() {
       <PageHero
         en="ACCESS"
         title="店舗・アクセス"
-        lead="和歌山県和歌山市南大工町20、フォルテワジマの西隣。南海和歌山市駅から東へ歩いてお越しいただける場所にあります。営業時間は8:30〜17:00、定休日は火曜日です。"
+        lead="和歌山県和歌山市南大工町20、フォルテワジマの西隣。南海和歌山市駅から東へ歩いてお越しいただける場所にあります。営業時間は8:30〜17:00、定休日は毎週火曜日と第3水曜日です。"
         photo={photos.storefront}
         crumbs={crumbs}
         position="center 40%"
@@ -85,7 +85,7 @@ export default function AccessPage() {
               {shop.tel}
             </a>
             <p className="mt-4 max-w-[34rem] text-[0.86rem] leading-[2] opacity-75">
-              受付時間 {shop.hours.label}／定休日 {shop.hours.closedDays.join('・')}
+              受付時間 {shop.hours.label}／定休日 {shop.hours.closedLabel}
               <br />
               {shop.hours.closedNote}
               <br />

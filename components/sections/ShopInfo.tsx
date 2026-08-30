@@ -51,7 +51,7 @@ export default function ShopInfo({ index, heading = '店舗情報', mapClassName
                   k: '定休日',
                   v: (
                     <>
-                      {shop.hours.closedDays.join('・')}
+                      {shop.hours.closedLabel}
                       <br />
                       <span className="text-[0.82rem] opacity-70">{shop.hours.closedNote}</span>
                     </>
