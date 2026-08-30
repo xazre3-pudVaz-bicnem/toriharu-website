@@ -45,16 +45,17 @@ export const photos = {
     ...shopLandscape,
     kind: 'shop',
   },
+  /* 包装紙の2枚は縦向きが正しい（竹皮の鰻を縦位置で撮影） */
   kabayakiWrapped01: {
     src: '/photos/kabayaki-wrapped-01.jpg',
     alt: '竹皮に載せ、トリハルの包装紙の上に置かれた鰻の蒲焼一尾',
-    ...shopLandscape,
+    ...shopPortrait,
     kind: 'shop',
   },
   kabayakiWrapped02: {
     src: '/photos/kabayaki-wrapped-02.jpg',
     alt: '有限会社トリハルの包装紙の上で、竹皮に載せられた鰻の蒲焼',
-    ...shopLandscape,
+    ...shopPortrait,
     kind: 'shop',
   },
   honesenbei: {
