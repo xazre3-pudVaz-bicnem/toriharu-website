@@ -233,12 +233,41 @@ function validate(article, existing) {
 
     /* ── data/menu.ts にない価格 ── */
     {
-      re: /(?<![0-9,])(?!194|216|238|324|4,000|5,000|4000|5000)[0-9][0-9,]{2,}\s*円/,
+      /* data/menu.ts にある額のみ許可（焼き鳥194/216/238、う肝324、鰻3,800〜） */
+      re: /(?<![0-9,])(?!194|216|238|324|3,800|3800)[0-9][0-9,]{2,}\s*円/,
       msg: 'data/menu.ts にない価格を書いています',
     },
   ];
   for (const b of banned) {
     if (b.re.test(body) || b.re.test(String(article.title))) errors.push(b.msg);
+  }
+
+  /*
+   * 「刷毛」「串打ち」は否定形なら正しい（刷毛では塗らない／串は打たない）。
+   * 肯定形で書かれている文だけを弾く。
+   */
+  for (const sentence of body.split(/[。\n]/)) {
+    if (!/刷毛|串を打|串打ち/.test(sentence)) continue;
+    const negated = /ではなく|ではありません|ません|しない|使わ(ず|ない)|なく、/.test(sentence);
+    if (!negated) {
+      errors.push(`「${sentence.trim().slice(0, 34)}」— 刷毛塗り・串打ちは当店の焼き方ではありません`);
+      break;
+    }
+  }
+
+  /* 単独の「ダレ」は誤り。複合語（秘伝ダレ・自家製ダレ）だけ許す */
+  {
+    const wrong = [...body.matchAll(/.{0,4}ダレ/g)]
+      .map((m) => m[0])
+      .filter((s) => !/(秘伝|自家製|継ぎ足し)ダレ/.test(s));
+    if (wrong.length) {
+      errors.push(`「${wrong[0]}」— 単独では「タレ」と書いてください`);
+    }
+  }
+
+  /* タレを熟成させているとは確認していない */
+  if (/タレ[^。]{0,10}熟成|熟成[^。]{0,6}タレ|熟成ダレ|熟成具合/.test(body)) {
+    errors.push('タレを熟成させているとは確認できていません');
   }
 
   /*
