@@ -141,9 +141,9 @@ export const photos = {
   },
 
   /* ── イメージ写真（店舗の実写ではありません／差し替え候補）─────── */
-  heroUnagiCharcoal: {
-    src: '/photos/hero-unagi-charcoal.jpg',
-    alt: '炭火の上でタレをまとった鰻の蒲焼が焼かれ、白い煙が立ちのぼる様子',
+  heroUnagiGrill: {
+    src: '/photos/hero-unagi-grill.jpg',
+    alt: '炭火の網の上で、タレをまとった鰻の蒲焼が焼かれ、白い煙が立ちのぼる様子',
     width: 1672,
     height: 941,
     kind: 'image',

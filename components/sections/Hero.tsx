@@ -10,14 +10,17 @@ export default function Hero() {
   return (
     <section className="relative min-h-[88svh] w-full overflow-hidden bg-sumi md:min-h-[100svh]">
       <div className="absolute inset-0">
-        {/* 横長の写真。スマホでは蒲焼と炭火が中心に来るよう画角をずらす */}
+        {/*
+          横長の写真なので、縦長のスマホでは背景の壁ばかりになってしまう。
+          少し寄せたうえで画角を蒲焼に合わせる。PCは引きのまま。
+        */}
         <Photo
-          photo={photos.heroUnagiCharcoal}
+          photo={photos.heroUnagiGrill}
           fill
           priority
           quality={84}
           sizes="100vw"
-          className="object-[78%_50%] md:object-[58%_55%]"
+          className="scale-125 object-[72%_64%] md:scale-100 md:object-[56%_58%]"
         />
       </div>
 
