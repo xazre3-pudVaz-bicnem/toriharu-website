@@ -39,10 +39,11 @@ export const photos = {
     ...shopLandscape,
     kind: 'shop',
   },
+  /* 鰻の頭が右を向く縦位置が正しい */
   kabayakiShowcase: {
     src: '/photos/kabayaki-showcase.jpg',
     alt: '店頭のショーケースに並ぶ、焼き上がったばかりの鰻の蒲焼',
-    ...shopLandscape,
+    ...shopPortrait,
     kind: 'shop',
   },
   /* 包装紙の2枚は縦向きが正しい（竹皮の鰻を縦位置で撮影） */
@@ -128,10 +129,11 @@ export const photos = {
     ...shopLandscape,
     kind: 'shop',
   },
+  /* 秤が立って見える縦位置が正しい */
   tareBottles: {
     src: '/photos/tare-bottles.jpg',
-    alt: '古い秤の横に置かれた、赤いキャップのタレの小瓶',
-    ...shopLandscape,
+    alt: '古い秤の手前に置かれた、赤いキャップのタレの小瓶',
+    ...shopPortrait,
     kind: 'shop',
   },
   sansho: {
