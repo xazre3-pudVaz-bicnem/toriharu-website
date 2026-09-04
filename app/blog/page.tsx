@@ -14,7 +14,7 @@ export const metadata: Metadata = buildMetadata({
   description:
     '和歌山市の老舗トリハルが綴る読みもの。国産鰻と蒲焼・白焼き、紀州備長炭の焼き鳥、土用の丑の日、和歌山市のテイクアウトなど、店の仕事と地元の食にまつわる記事を掲載しています。',
   path: '/blog',
-  ogImage: '/photos/kabayaki-tray.jpg',
+  ogImage: '/photos/kabayaki-showcase.jpg',
 });
 
 const crumbs = [
@@ -35,7 +35,7 @@ export default function BlogIndexPage() {
         en="JOURNAL"
         title="読みもの"
         lead="鰻のこと、焼き鳥のこと、炭のこと、和歌山のこと。店の仕事にまつわる話を、少しずつ書きためています。"
-        photo={photos.kabayakiTray}
+        photo={photos.liveEels}
         crumbs={crumbs}
         position="center 55%"
       />

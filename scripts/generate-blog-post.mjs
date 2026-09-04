@@ -255,6 +255,19 @@ function validate(article, existing) {
     }
   }
 
+  /*
+   * あたため直しに酒や水を加えない（味が変わるため、店頭でもそう伝えている）。
+   * 「お酒は加えない」のような否定形は通す。
+   */
+  for (const sentence of body.split(/[。\n]/)) {
+    if (!/(酒|みりん|水)[^。]{0,8}(ふり|振り|かけ|加え|そそ|注)/.test(sentence)) continue;
+    const negated = /ません|ではなく|しない|加えない|かけない|不要|避け/.test(sentence);
+    if (!negated) {
+      errors.push(`「${sentence.trim().slice(0, 34)}」— あたため直しに酒や水は加えません（そのまま温めます）`);
+      break;
+    }
+  }
+
   /* 単独の「ダレ」は誤り。複合語（秘伝ダレ・自家製ダレ）だけ許す */
   {
     const wrong = [...body.matchAll(/.{0,4}ダレ/g)]

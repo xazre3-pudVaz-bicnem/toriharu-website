@@ -144,13 +144,6 @@ export const photos = {
   },
 
   /* ── イメージ写真（店舗の実写ではありません／差し替え候補）─────── */
-  heroUnagiGrill: {
-    src: '/photos/hero-unagi-grill.jpg',
-    alt: '炭火の網の上で、タレをまとった鰻の蒲焼が焼かれ、白い煙が立ちのぼる様子',
-    width: 1672,
-    height: 941,
-    kind: 'image',
-  },
   imgYakitoriPlate: {
     src: '/photos/img-yakitori-plate.jpg',
     alt: '陶器の皿に並べられた、もも・ねぎま・皮・肝などの焼き鳥',
