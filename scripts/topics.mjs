@@ -58,6 +58,8 @@ export const topics = [
   { category: 'season', title: '夏にうなぎを食べる', intent: '夏 うなぎ 理由', angle: '夏の風物としての鰻。健康効果は断定しない。' },
   { category: 'season', title: 'お盆の食卓とうなぎ', intent: 'お盆 うなぎ', angle: '人が集まる日の献立。数の用意について。' },
   { category: 'season', title: '年末年始のごちそう', intent: '年末年始 うなぎ 焼き鳥', angle: '年またぎの食卓。予約の考え方。' },
+  { category: 'season', title: 'クリスマスチキンを炭火で焼く', intent: 'クリスマスチキン 炭火 和歌山', angle: '骨付きもも肉を生から炭火で焼くということ。下焼きをしない理由と、塩胡椒だけで仕上げる考え方。価格・予約開始日は未定なので書かない。' },
+  { category: 'season', title: 'クリスマスに鶏を食べる', intent: 'クリスマス チキン 予約', angle: 'クリスマスに鶏を食べる習慣の背景と、予約して受け取るという選び方。その年の日付は書かない。' },
   { category: 'season', title: '父の日の贈りもの', intent: '父の日 うなぎ 贈り物', angle: '贈答としての鰻。発送という選択肢。' },
   { category: 'season', title: '敬老の日に贈る', intent: '敬老の日 うなぎ 贈り物', angle: '柔らかく食べやすいものという視点。' },
   { category: 'season', title: 'お祝いの日の献立', intent: 'お祝い 献立 うなぎ', angle: '記念日に鰻を選ぶという文化。' },

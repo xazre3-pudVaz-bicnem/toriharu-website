@@ -12,11 +12,11 @@ import { photos } from '@/data/photos';
 import { shop } from '@/data/shop';
 
 export const metadata: Metadata = buildMetadata({
-  title: '季節の一品｜土用の丑の日・お盆・年末年始のご用意',
+  title: '季節の一品｜クリスマスチキン・土用の丑の日のご用意',
   description:
-    '和歌山市南大工町のトリハルの、季節限定商品と時期ごとのご案内です。土用の丑の日やお盆、年末年始は鰻のご入り用が重なります。数に限りがありますので、お早めにご相談ください。',
+    '和歌山市南大工町のトリハルの季節限定商品。紀州備長炭で生から焼き上げるクリスマスチキン（骨付きもも肉・塩胡椒のみ）のご予約をまもなく承ります。土用の丑の日やお盆、年末年始のご用意もご案内しています。',
   path: '/seasonal',
-  ogImage: '/photos/kabayaki-wrapped-01.jpg',
+  ogImage: '/photos/christmas-chicken.jpg',
 });
 
 const crumbs = [
@@ -40,7 +40,7 @@ const calendar = [
   },
   {
     season: '冬',
-    body: '年末年始は人が集まる日が続きます。年内最終・年始の営業日は、店頭またはお電話でご確認ください。',
+    body: 'クリスマスのころは、骨付きの鶏もも肉を紀州備長炭で焼き上げるクリスマスチキンをご用意します。年末年始も人が集まる日が続きますので、年内最終・年始の営業日は店頭またはお電話でご確認ください。',
   },
 ];
 
@@ -51,9 +51,9 @@ export default function SeasonalPage() {
         en="SEASONAL"
         title="季節の一品"
         lead="仕入れと暦にあわせて、店頭に並ぶものは少しずつ変わります。季節限定でご用意する品があるときは、このページでご案内します。数に限りがある品も多いので、日にちが決まっている場合はお早めにご相談ください。"
-        photo={photos.kabayakiWrapped01}
+        photo={photos.christmasChicken}
         crumbs={crumbs}
-        position="center 45%"
+        position="center 55%"
       />
 
       <SeasonalSection compact />

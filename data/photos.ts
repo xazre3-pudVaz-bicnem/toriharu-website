@@ -143,6 +143,14 @@ export const photos = {
     kind: 'shop',
   },
 
+  /* ── 季節限定 ───────────────────────── */
+  christmasChicken: {
+    src: '/photos/christmas-chicken.jpg',
+    alt: '塩胡椒をふった骨付きの鶏もも肉を、紀州備長炭の炭火で焼き上げているところ',
+    ...shopLandscape,
+    kind: 'shop',
+  },
+
   /* ── イメージ写真（店舗の実写ではありません／差し替え候補）─────── */
   imgYakitoriPlate: {
     src: '/photos/img-yakitori-plate.jpg',

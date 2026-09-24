@@ -18,7 +18,7 @@ export default function SeasonalSection({ compact = false }: { compact?: boolean
     <section className="washi-grain relative bg-washi px-5 py-24 md:px-10 md:py-36">
       <div className="mx-auto max-w-[92rem]">
         <div className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20">
-          <Reveal>
+          <Reveal className="lg:sticky lg:top-28 lg:self-start">
             {!compact && <SectionLabel index="08" en="SEASONAL" className="text-tan" />}
             <h2 className="display mt-8 text-[clamp(1.8rem,6.5vw,3rem)] leading-[1.45] tracking-[0.08em]">
               季節の一品。
@@ -42,53 +42,56 @@ export default function SeasonalSection({ compact = false }: { compact?: boolean
                 </p>
               </div>
             ) : (
-              <ul className="divide-y divide-sumi/12 border-y border-sumi/15">
+              /* 季節商品はその時期の主役なので、写真を大きく見せる */
+              <ul className="space-y-16 border-t border-sumi/15 pt-10 md:space-y-24">
                 {items.map((item) => (
-                  <li key={item.slug} className="grid gap-6 py-8 sm:grid-cols-[10rem_1fr] sm:gap-10">
-                    {item.image ? (
+                  <li key={item.slug}>
+                    {item.image && (
                       <Image
                         src={item.image}
                         alt={item.imageAlt ?? item.name}
-                        width={640}
-                        height={800}
-                        sizes="(max-width: 639px) 92vw, 10rem"
+                        width={1477}
+                        height={1108}
+                        sizes="(max-width: 1023px) 92vw, 52vw"
                         className="h-auto w-full"
                       />
-                    ) : (
-                      <span aria-hidden className="hidden sm:block" />
                     )}
-                    <div>
-                      <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1">
-                        <h3 className="display text-xl tracking-[0.06em]">{item.name}</h3>
+                    <div className={item.image ? 'mt-8' : ''}>
+                      <div className="flex flex-wrap items-baseline gap-x-5 gap-y-1">
+                        <h3 className="display text-[clamp(1.4rem,5vw,2rem)] tracking-[0.06em]">
+                          {item.name}
+                        </h3>
                         <span
-                          className={`text-[0.68rem] tracking-[0.2em] ${
+                          className={`text-[0.7rem] tracking-[0.2em] ${
                             item.status === 'ended' ? 'opacity-45' : 'text-tan'
                           }`}
                         >
                           {statusLabel[item.status]}
                         </span>
                       </div>
-                      <p className="mt-3 text-[0.9rem] leading-[2]">{item.summary}</p>
+                      <p className="mt-5 max-w-[38rem] text-[0.95rem] leading-[2.05]">{item.summary}</p>
                       {item.body && (
-                        <div className="mt-3 space-y-2 text-[0.86rem] leading-[2] opacity-80">
+                        <div className="mt-5 max-w-[38rem] space-y-4 text-[0.89rem] leading-[2.05] opacity-80">
                           {item.body.split('\n').filter(Boolean).map((p) => (
                             <p key={p}>{p}</p>
                           ))}
                         </div>
                       )}
-                      <dl className="mt-4 flex flex-wrap gap-x-8 gap-y-1 text-[0.8rem] opacity-70">
+                      <dl className="mt-7 flex flex-wrap gap-x-10 gap-y-2 border-t border-sumi/12 pt-5 text-[0.82rem]">
                         {item.period && (
-                          <div className="flex gap-2">
-                            <dt>販売時期</dt>
+                          <div className="flex gap-3">
+                            <dt className="opacity-60">販売時期</dt>
                             <dd>{item.period}</dd>
                           </div>
                         )}
-                        {item.price !== null && (
-                          <div className="flex gap-2">
-                            <dt>価格</dt>
-                            <dd className="tabular-nums">{item.price.toLocaleString()}円（税込）</dd>
-                          </div>
-                        )}
+                        <div className="flex gap-3">
+                          <dt className="opacity-60">価格</dt>
+                          <dd className={item.price !== null ? 'tabular-nums' : ''}>
+                            {item.price !== null
+                              ? `${item.price.toLocaleString()}円（税込）`
+                              : '決まり次第お知らせします'}
+                          </dd>
+                        </div>
                       </dl>
                     </div>
                   </li>

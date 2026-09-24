@@ -42,11 +42,22 @@ export type SeasonalItem = {
   status: SeasonalStatus;
 };
 
-/**
- * 現時点で店舗から確認できている季節商品はありません。
- * 確認でき次第、このリストに追加してください（AIによる商品名の創作は禁止）。
- */
-export const seasonalItems: SeasonalItem[] = [];
+export const seasonalItems: SeasonalItem[] = [
+  {
+    slug: 'christmas-chicken',
+    name: 'クリスマスチキン',
+    summary:
+      '骨付きの鶏もも肉を、紀州備長炭で生から焼き上げます。味付けは塩胡椒のみ。毎年この時期だけのご用意です。',
+    body: `下焼きをせず、生の状態から炭火にかけます。時間はかかりますが、そのぶん皮は香ばしく、骨のまわりまで火が通ります。
+味は塩胡椒だけ。鶏の味がそのまま出るので、素材と焼き加減だけで決まります。
+ご予約はまもなく承ります。価格は仕入れが決まり次第、こちらでお知らせいたします。数に限りがございますので、お早めにご相談ください。`,
+    period: '12月（ご予約はまもなく開始）',
+    price: null,
+    image: '/photos/christmas-chicken.jpg',
+    imageAlt: '塩胡椒をふった骨付きの鶏もも肉を、紀州備長炭の炭火で焼き上げているところ',
+    status: 'upcoming',
+  },
+];
 
 export const visibleSeasonalItems = seasonalItems.filter((i) => i.status !== 'draft');
 export const onSaleSeasonalItems = seasonalItems.filter((i) => i.status === 'onsale');
