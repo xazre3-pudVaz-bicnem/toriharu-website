@@ -42,21 +42,27 @@ export default function SeasonalSection({ compact = false }: { compact?: boolean
                 </p>
               </div>
             ) : (
-              /* 季節商品はその時期の主役なので、写真を大きく見せる */
+              /*
+                季節商品はその時期の主役なので写真を大きく見せる。
+                縦位置の写真でも高くなりすぎないよう、本文と横に並べる。
+              */
               <ul className="space-y-16 border-t border-sumi/15 pt-10 md:space-y-24">
                 {items.map((item) => (
-                  <li key={item.slug}>
+                  <li
+                    key={item.slug}
+                    className={item.image ? 'grid gap-8 md:grid-cols-[minmax(0,0.85fr)_1fr] md:gap-12' : ''}
+                  >
                     {item.image && (
                       <Image
                         src={item.image}
                         alt={item.imageAlt ?? item.name}
-                        width={1477}
-                        height={1108}
-                        sizes="(max-width: 1023px) 92vw, 52vw"
+                        width={1108}
+                        height={1477}
+                        sizes="(max-width: 767px) 92vw, 24vw"
                         className="h-auto w-full"
                       />
                     )}
-                    <div className={item.image ? 'mt-8' : ''}>
+                    <div>
                       <div className="flex flex-wrap items-baseline gap-x-5 gap-y-1">
                         <h3 className="display text-[clamp(1.4rem,5vw,2rem)] tracking-[0.06em]">
                           {item.name}

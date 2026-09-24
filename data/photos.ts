@@ -147,7 +147,7 @@ export const photos = {
   christmasChicken: {
     src: '/photos/christmas-chicken.jpg',
     alt: '塩胡椒をふった骨付きの鶏もも肉を、紀州備長炭の炭火で焼き上げているところ',
-    ...shopLandscape,
+    ...shopPortrait,
     kind: 'shop',
   },
 
