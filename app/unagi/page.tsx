@@ -16,7 +16,7 @@ import { shop } from '@/data/shop';
 export const metadata: Metadata = buildMetadata({
   title: '国産鰻の蒲焼・白焼き｜和歌山市で毎朝捌く鰻',
   description:
-    '和歌山市南大工町のトリハルは、国産の活鰻を毎朝店舗で捌き、紀州備長炭と秘伝のタレで焼き上げる持ち帰り専門店です。鰻の蒲焼・白焼き・う肝串・骨せんべいを販売、全国発送も承ります。',
+    '和歌山市南大工町のトリハルは、国産の活鰻を毎朝店舗で捌き、紀州備長炭と秘伝のタレで焼き上げる持ち帰り専門店です。鰻の蒲焼・白焼き・う肝串・骨せんべいを販売、全国発送も承ります。卸用の鰻も扱っています。',
   path: '/unagi',
   ogImage: '/photos/kabayaki-tray.jpg',
 });
@@ -237,6 +237,34 @@ export default function UnagiPage() {
                 持ち帰り・発送のご案内
               </Link>
             </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* 卸用の鰻 */}
+      <section id="wholesale" className="bg-sumi text-kinari">
+        <div className="mx-auto grid max-w-[92rem] items-center gap-12 px-5 py-24 md:px-10 md:py-36 lg:grid-cols-[1.2fr_0.8fr] lg:gap-20">
+          <Reveal as="figure" slow>
+            <Photo photo={photos.kabayakiTrayThree} sizes="(max-width: 1023px) 92vw, 54vw" className="h-auto w-full" />
+          </Reveal>
+
+          <Reveal delay={100}>
+            <SectionLabel en="WHOLESALE" className="text-honoo" />
+            <h2 className="display mt-8 text-[clamp(1.7rem,6vw,2.7rem)] leading-[1.5] tracking-[0.08em]">
+              卸用の鰻も、
+              <br />
+              扱っています。
+            </h2>
+            <div className="mt-8 max-w-[32rem] space-y-4 text-[0.94rem] leading-[2.1] text-kinari/85 md:text-base">
+              <p>トリハルでは、店頭でのお渡しや全国発送のほかに、卸用の鰻も販売しています。</p>
+              <p>数量や価格、お渡しの方法など、詳しいことはお電話でお問い合わせください。</p>
+            </div>
+            <a href={shop.telHref} className="display mt-8 inline-flex text-2xl tracking-[0.06em] text-honoo tabular-nums">
+              {shop.tel}
+            </a>
+            <p className="mt-2 text-[0.8rem] text-kinari/70">
+              受付時間 {shop.hours.label}／定休日 {shop.hours.closedLabel}
+            </p>
           </Reveal>
         </div>
       </section>

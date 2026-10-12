@@ -39,6 +39,13 @@ export const photos = {
     ...shopLandscape,
     kind: 'shop',
   },
+  /* 卸用の鰻のご案内に使用（2026年10月に店舗から提供。頭側が右） */
+  kabayakiTrayThree: {
+    src: '/photos/kabayaki-tray-three.jpg',
+    alt: 'タレを重ねて焼き上げ、バットに並べた三尾の鰻の蒲焼',
+    ...shopLandscape,
+    kind: 'shop',
+  },
   /* 鰻の頭が右を向く縦位置が正しい */
   kabayakiShowcase: {
     src: '/photos/kabayaki-showcase.jpg',
