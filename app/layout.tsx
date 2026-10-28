@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next';
-import { Noto_Sans_JP, Noto_Serif_JP } from 'next/font/google';
+import { Noto_Serif_JP } from 'next/font/google';
 import './globals.css';
 
 import Header from '@/components/layout/Header';
@@ -9,19 +9,15 @@ import { localBusinessJsonLd, websiteJsonLd } from '@/lib/jsonld';
 import { defaultDescription, isPublic, siteName, siteUrl } from '@/lib/site';
 import { shop } from '@/data/shop';
 
+/*
+ * Webフォントは見出しの明朝だけ。本文は端末の標準ゴシック（app/globals.css）。
+ * 日本語のWebフォントは1書体でもページあたり1MB以上になるため、本文まで読み込まない。
+ */
 const serif = Noto_Serif_JP({
   subsets: ['latin'],
   weight: ['400', '600'],
   display: 'swap',
   variable: '--font-noto-serif-jp',
-  preload: false,
-});
-
-const sans = Noto_Sans_JP({
-  subsets: ['latin'],
-  weight: ['400', '500'],
-  display: 'swap',
-  variable: '--font-noto-sans-jp',
   preload: false,
 });
 
@@ -78,7 +74,7 @@ export const revalidate = 3600;
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="ja" className={`${serif.variable} ${sans.variable}`}>
+    <html lang="ja" className={serif.variable}>
       <body>
         <a
           href="#main"

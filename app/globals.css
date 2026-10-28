@@ -17,9 +17,27 @@
   --color-honoo: #e2903c;
 
   --font-serif-jp: var(--font-noto-serif-jp), 'Hiragino Mincho ProN', 'Yu Mincho', serif;
-  --font-sans-jp: var(--font-noto-sans-jp), 'Hiragino Sans', 'Yu Gothic', sans-serif;
+  /* 本文は端末の標準ゴシック（Mac・iPhone はヒラギノ、Windows は游ゴシック、Android は Noto） */
+  --font-sans-jp: 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Toriharu Yu Gothic', Meiryo, sans-serif;
 
   --ease-toriharu: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/*
+ * Windows の游ゴシックは、標準の太さ（Regular）だと細くかすれて読みにくい。
+ * 本文には Medium、太字には Bold を当てるため、別名を付けて呼び分ける。
+ * 端末にあるフォントを使うだけなので、ダウンロードは発生しない。
+ */
+@font-face {
+  font-family: 'Toriharu Yu Gothic';
+  src: local('Yu Gothic Medium'), local('YuGothic-Medium');
+  font-weight: 100 500;
+}
+
+@font-face {
+  font-family: 'Toriharu Yu Gothic';
+  src: local('Yu Gothic Bold'), local('YuGothic-Bold');
+  font-weight: 600 900;
 }
 
 :root {

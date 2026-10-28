@@ -6,6 +6,7 @@ type Props = {
   /** 親要素いっぱいに敷く（親に position と高さが必要） */
   fill?: boolean;
   sizes: string;
+  /** ファーストビューの写真（LCP）。遅延読み込みせず、最優先で取りにいく */
   priority?: boolean;
   className?: string;
   /** object-position。人物や主題が寄っている写真で使う */
@@ -27,6 +28,10 @@ export default function Photo({
   position,
   quality,
 }: Props) {
+  // ファーストビューの写真は遅延読み込みをやめ、最優先で取りにいく。
+  // Next.js 16 では priority（＝ preload）は非推奨で、こちらが推奨されている。
+  const eager = priority ? ({ loading: 'eager', fetchPriority: 'high' } as const) : {};
+
   if (fill) {
     return (
       <Image
@@ -34,7 +39,7 @@ export default function Photo({
         alt={photo.alt}
         fill
         sizes={sizes}
-        priority={priority}
+        {...eager}
         quality={quality}
         className={`object-cover ${className}`}
         style={position ? { objectPosition: position } : undefined}
@@ -49,7 +54,7 @@ export default function Photo({
       width={photo.width}
       height={photo.height}
       sizes={sizes}
-      priority={priority}
+      {...eager}
       quality={quality}
       className={className}
       style={position ? { objectPosition: position } : undefined}
