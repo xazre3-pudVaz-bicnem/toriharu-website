@@ -76,6 +76,8 @@
 ### 実装上の決まり
 
 - カラーとフォントは `app/globals.css` の `@theme` に定義。個別に色を書かない
+- Webフォントは見出しの明朝（Noto Serif JP）だけ。本文は端末の標準ゴシック（Windows は游ゴシック Medium）。
+  本文に日本語のWebフォントを足さない（1書体でページあたり1MB以上増える）
 - カスタムクラスは必ず `@layer components` の中に書く（Tailwind v4 では素で書くと
   ユーティリティを打ち消す）
 - スクロール出現は `components/ui/Reveal.tsx`。state ではなく `data-visible` を
@@ -117,3 +119,5 @@ npx tsc --noEmit && npx eslint . && NEXT_PUBLIC_SITE_URL=https://example.com npm
 - コントラスト AA（小さい文字 4.5:1、大きい文字 3:1）
 - 営業時間が 8:30〜17:00 になっている
 - 「持ち帰り専門」であることが誤解されない
+- 公開後、本番（`https://www.toriharu-wakayama.com`）の `/robots.txt` が `Disallow: /` になっていない
+  （なっているとサイト全体が検索に出なくなる。以前、本番URLの設定漏れでこの状態が続いていた）

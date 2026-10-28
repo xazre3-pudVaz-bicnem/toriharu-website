@@ -26,7 +26,7 @@ npm run lint         # ESLint
 
 | 変数 | 用途 |
 | --- | --- |
-| `NEXT_PUBLIC_SITE_URL` | 本番の絶対URL（例 `https://toriharu.jp`）。**未設定の場合、canonical・OG・sitemap を出力せず、robots.txt が全面 Disallow になります。**プレビューURLが誤ってインデックスされるのを防ぐための仕組みです。本番デプロイ時は必ず設定してください。 |
+| `NEXT_PUBLIC_SITE_URL` | 省略可。本番の絶対URL。**Vercel の本番デプロイでは、未設定でもプロジェクトの本番ドメイン（現在は `https://www.toriharu-wakayama.com`）が自動で使われます。**それ以外（手元・プレビュー）で未設定の場合は、canonical・OG・sitemap を出力せず、robots.txt が全面 Disallow になります。プレビューURLが誤ってインデックスされるのを防ぐための仕組みです。 |
 | `ANTHROPIC_API_KEY` | ブログ自動生成用。GitHub の Secrets に設定します（ソースには書かない） |
 | `ANTHROPIC_MODEL` | 省略可。既定は `claude-haiku-4-5` |
 
@@ -149,9 +149,22 @@ ANTHROPIC_API_KEY=xxx DRY_RUN=1 npm run blog:generate
 - 「究極」「絶品」などの誇大表現
 - 未確認の創業年、「〇代目」
 - 年によって変わる具体的な日付
+- 部位と価格の取り違え（とり肝を324円と書く、など）
+- 保存できる期間、「何人で一尾」といった分量の目安
+- 「予約不要」「確実に用意できる」など、事実より強い言い方
+- 存在しないページへのリンク、見出しの中のリンク、だ・である調
+
+機械的な検証を通った記事は、もう一度AIに渡して「店について書いた文が、事実の一覧で裏づけられるか」を
+確かめています（事実確認）。正規表現では拾えない創作、たとえば「持ち帰りを見越してタレの濃さを変えている」
+のような文を止めるためです。問題が見つかったときは、その指摘を添えて同じ記事を直させ、3回で直らなければ
+その日は投稿しません。
 
 **店の情報が変わったら `data/verified-facts.json` も更新してください。**
-ここを直さないと、AIは古い情報のまま書き続けます。
+ここを直さないと、AIは古い情報のまま書き続けます。サイトの各ページに書いている店の事実（価格、予約の目安、
+蒲焼を竹皮に載せること、温め直しの方法など）もここに入れてあるので、ページの記載を変えたときは合わせてください。
+
+> 2026年10月に、それまでの25本を見直しました。価格の誤り（とり肝を324円）、「うなぎは予約不要」、
+> 確認できていない保存期間・焼き方の工夫、存在しないページへのリンクなどを直しています。
 
 ### テーマを増やす
 
@@ -162,6 +175,12 @@ ANTHROPIC_API_KEY=xxx DRY_RUN=1 npm run blog:generate
 
 ## SEO まわり
 
+- 本番ドメインは `https://www.toriharu-wakayama.com` です。`toriharu-website.vercel.app` へのアクセスは
+  `vercel.json` で本番ドメインへ転送しています（ドメインを変えるときは、ここも直してください）
+- **公開後は、本番の `/robots.txt` が `Allow: /` になっていることを確認してください。**
+  以前、本番URLが未設定のまま公開され、サイト全体が検索から締め出されていました
+  （robots.txt が全面 Disallow、全ページ noindex、sitemap.xml が空）。いまは Vercel の本番なら
+  自動で本番ドメインになりますが、インデックスの状況は Google Search Console で見てください
 - 各ページの `title` / `description` / OG / canonical は `lib/seo.ts` の `buildMetadata()` 経由
 - 構造化データは `lib/jsonld.ts`
   - 全ページ … `Store` + `FoodEstablishment`（持ち帰り専門なので `takeoutAvailable: true`）、`WebSite`
