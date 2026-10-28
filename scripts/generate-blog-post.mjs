@@ -40,13 +40,15 @@ function readExistingPosts() {
     .readdirSync(BLOG_DIR)
     .filter((f) => f.endsWith('.md'))
     .map((f) => {
-      const raw = fs.readFileSync(path.join(BLOG_DIR, f), 'utf8');
+      // Windows で取り出したファイルは改行が CRLF のことがある
+      const raw = fs.readFileSync(path.join(BLOG_DIR, f), 'utf8').replace(/\r\n/g, '\n');
       const fm = /^---\n([\s\S]*?)\n---/.exec(raw);
       const get = (key) => {
         const m = fm ? new RegExp(`^${key}:\\s*(.*)$`, 'm').exec(fm[1]) : null;
         return m ? m[1].trim().replace(/^["']|["']$/g, '') : '';
       };
-      return { file: f, slug: get('slug'), title: get('title'), intent: get('intent') };
+      // slug が無いときはファイル名（lib/blog.ts と同じ決め方）
+      return { file: f, slug: get('slug') || f.replace(/\.md$/, ''), title: get('title'), intent: get('intent') };
     });
 }
 
@@ -104,6 +106,17 @@ function escapeYaml(s) {
 
 /* ───────────── プロンプト ───────────── */
 
+/** 内部リンク先の中身。リンクの文言を合わせられるよう、生成時に伝える */
+const linkPages = {
+  '/unagi': '鰻（上焼き鰻・白焼き）のページ',
+  '/yakitori': '焼き鳥のページ',
+  '/menu': '商品一覧と価格',
+  '/takeout': '持ち帰り・全国発送・あたため直しのご案内',
+  '/about': '店の歩み（トリハルについて）',
+  '/access': '店舗・アクセス（地図・営業時間）',
+  '/seasonal': '季節限定の商品（クリスマスチキンなど）。季節の行事や食べ方の一般論のリンク先には使わない',
+};
+
 function buildSystemPrompt() {
   return `あなたは、和歌山市南大工町にある焼き鳥・鰻の持ち帰り専門店「トリハル」の公式サイトで、読みものを書く書き手です。
 
@@ -122,6 +135,11 @@ ${FACTS.forbidden.map((f) => `- ${f}`).join('\n')}
 上のどれかに当てはまりそうな内容は、書かずに省いてください。「わからないことは書かない」が最優先のルールです。
 一般的な料理の知識（鰻の焼き方、部位の特徴、行事の由来など）は書いてかまいませんが、断定を避けるべきところは「〜と言われています」「地域によって異なります」といった書き方にしてください。健康効果・効能は書かないでください。
 
+## 店について書くときの決まり
+- トリハルについて書いてよいのは、上の一覧にあることだけです。一覧にない理由・工夫・こだわり・手順・味・日持ちを、推測で付け足さないでください。
+- 一般的な料理の知識を書くのはかまいませんが、それを「トリハルではこうしている」とは書かないでください。
+- 店にたずねないとわからないこと（保存できる期間、その日の品揃えなど）は、「店頭またはお電話でお尋ねください」と案内してください。
+
 ## 文章のトーン
 - 老舗だからこそ出せる、静かな自信。淡々と、しかし具体的に。
 - 大げさな広告コピーは使わない。「究極」「絶品」「感動の」のような表現は禁止。
@@ -134,7 +152,8 @@ ${FACTS.forbidden.map((f) => `- ${f}`).join('\n')}
 - 冒頭に見出しは置かず、200〜300字ほどの導入から始める。
 - ## 見出しは4〜6本。それぞれの下に2〜4段落。
 - 箇条書きは使いすぎない（多くても2か所まで）。
-- 本文中に、指定された内部リンクを自然な文脈で必ず入れる。Markdownのリンク記法 [表示テキスト](/パス) を使う。
+- 本文中に、指定された内部リンクを自然な文脈で必ず入れる。Markdownのリンク記法 [表示テキスト](/パス) を使う。指定されたパス以外にはリンクしない。
+- 見出しの中にはリンクを入れない。
 - 記事末尾に「## トリハルのご案内」といった見出しは作らない（サイト側で自動的に付きます）。
 - 全体で1,600〜2,600字程度。文字数を稼ぐための繰り返しはしない。`;
 }
@@ -146,7 +165,8 @@ function buildUserPrompt(topic, existingTitles) {
 - テーマ: ${topic.title}
 - 想定している検索: 「${topic.intent}」
 - 切り口: ${topic.angle}
-- 本文に必ず入れる内部リンク（2〜3本）: ${links.join(' , ')}
+- 本文に必ず入れる内部リンク（2〜3本。リンクの文言は、リンク先の中身に合わせる）:
+${links.map((l) => `  - ${l} … ${linkPages[l] ?? ''}`).join('\n')}
 
 すでに公開している記事のタイトル（内容が重ならないようにしてください）:
 ${existingTitles.length ? existingTitles.map((t) => `- ${t}`).join('\n') : '（まだありません）'}
@@ -198,7 +218,7 @@ function validate(article, existing) {
     { re: /店内でお召し上が|イートイン|客席をご用意|店内飲食|お席/, msg: '店内飲食に触れています' },
     { re: /オンラインショップ|通販サイト|カートに入れ|ネット注文|オンラインで注文/, msg: '通販サイトに触れています' },
     {
-      re: /疲労回復|夏バテに効|滋養強壮|健康に良いことが証明|栄養価が高|栄養があ|栄養のあ|体にいい|体に良い/,
+      re: /疲労回復|夏バテに効|滋養強壮|健康に良|健康にいい|栄養|スタミナ|精がつ|体にいい|体に良い/,
       msg: '健康・栄養の効能に踏み込んでいます',
     },
     { re: /究極|絶品|最高品質|感動の|至高|極上/, msg: '大げさな広告表現があります' },
@@ -215,8 +235,25 @@ function validate(article, existing) {
       re: /タレに漬け込|タレにつけ込|一晩漬け|マリネ/,
       msg: 'タレの工程が事実と違います（漬け込むのではなく、くぐらせて焼くのを繰り返します）',
     },
-    { re: /蒸してから焼|一度蒸し/, msg: 'トリハルが蒸すとは確認できていません' },
     { re: /冷凍で(お|ご)?届け|冷凍便|真空パック/, msg: '確認できていない配送・包装の形態です' },
+    {
+      re: /(焼き鳥|やきとり|串)[^。]{0,15}竹皮|竹皮[^。]{0,15}(焼き鳥|やきとり|串)/,
+      msg: '竹皮に載せて包むと確認できているのは蒲焼だけです',
+    },
+    {
+      re: /日持ち|保存がき|保存が効|冷凍(保存|も可能|できます|が可能)|常温で(保存|置|も大丈夫|構いません)|翌日(まで|中|の朝まで)/,
+      msg: '保存できる期間や方法を書いています（店では目安を示していません）',
+    },
+
+    /* ── 事実より強い言い方 ── */
+    {
+      re: /予約(は)?不要|確実に(ご)?用意(でき|いた|し)|常時(置|並|販売)|毎日確実|必ず(あり|並|ご用意)|開店直後/,
+      msg: '品揃えや予約について、事実より強い言い方をしています',
+    },
+    {
+      re: /(120|百二十|百)年[^。]{0,24}(同じ場所|鰻を(焼|扱|捌)|うなぎを(焼|扱|捌)|持ち帰り専門|火が絶え)/,
+      msg: '120年以上続いているのは商いです（創業の地は西ノ店で、いまは南大工町）',
+    },
 
     /* ── 店の実績・人気の創作 ── */
     {
@@ -227,7 +264,7 @@ function validate(article, existing) {
 
     /* ── 分量の断定 ── */
     {
-      re: /[0-9０-９一二三四五六七八九十]\s*人前|[0-9０-９]\s*人分|夫婦(ふたり|二人)で分け|に適した量|ちょうどよい量/,
+      re: /[0-9０-９一二三四五六七八九十]\s*人前|[0-9０-９]\s*人分|夫婦(ふたり|二人)で分け|に適した量|ちょうどよい量|人で一尾|一人\s*[0-9０-９一二三四五六七八九十]+\s*[〜～~-]?\s*[0-9０-９]*\s*本|[0-9０-９]+\s*[〜～~]\s*[0-9０-９]+\s*(本|尾)/,
       msg: '確認できていない分量を断定しています',
     },
 
@@ -301,6 +338,68 @@ function validate(article, existing) {
   }
 
   /*
+   * 蒸す工程。「関東では蒸してから焼く」という一般論は正しいが、
+   * トリハルが蒸すとは確認できていない（「捌き、蒸し、焼く」と書いたことがある）。
+   */
+  for (const sentence of body.split(/[。\n]/)) {
+    if (!/蒸(し|す|さ)/.test(sentence) || /蒸し暑/.test(sentence)) continue;
+    if (/関東|関西|一般|言われ|とされ|傾向|地域|有無|かどうか|蒸すか/.test(sentence)) continue;
+    errors.push(`「${sentence.trim().slice(0, 34)}」— トリハルが蒸すとは確認できていません`);
+    break;
+  }
+
+  /* 部位と価格の取り違え（とり肝を、う肝串の324円と書いたことがある） */
+  const partPrices = [
+    [/ももなんこつ/g, 194], [/ヤゲン/g, 216], [/ハツ/g, 216], [/せせり/g, 238], [/う肝/g, 324],
+    [/もも/g, 194], [/むね/g, 194], [/ねぎ/g, 194], [/(?<!竹)皮/g, 194], [/とり肝|鶏肝|レバー/g, 194],
+    [/ささみ/g, 194], [/砂ずり|砂肝/g, 194], [/手羽先/g, 194],
+  ];
+  for (const clause of body.split(/[。、\n]/)) {
+    const yen = /([0-9][0-9,]*)\s*円/.exec(clause);
+    if (!yen) continue;
+    // 価格の直前にいちばん近く書かれた部位を、その価格の部位とみなす
+    let nearest = null;
+    for (const [re, price] of partPrices) {
+      for (const m of clause.slice(0, yen.index).matchAll(re)) {
+        if (!nearest || m.index > nearest.index) nearest = { index: m.index, name: m[0], price };
+      }
+    }
+    if (nearest && nearest.price !== Number(yen[1].replace(/,/g, ''))) {
+      errors.push(`「${clause.trim().slice(0, 34)}」— ${nearest.name}は${nearest.price}円です`);
+      break;
+    }
+  }
+
+  /* リンク先がサイトにあるか（存在しないページや、崩れたリンクを書いたことがある） */
+  const pages = new Set([
+    '/', '/unagi', '/yakitori', '/menu', '/takeout', '/about', '/access', '/seasonal', '/faq', '/blog',
+    ...existing.map((p) => `/blog/${p.slug}`),
+  ]);
+  for (const m of body.matchAll(/\]\(([^)\s]*)\)/g)) {
+    if (/^https?:\/\//.test(m[1]) || pages.has(m[1].replace(/[#?].*$/, ''))) continue;
+    errors.push(`リンク先「${m[1]}」はサイトにありません`);
+    break;
+  }
+  if (/^#{2,3}\s[^\n]*\]\(/m.test(body)) errors.push('見出しの中にリンクがあります');
+
+  /* 文末を「です・ます」にそろえる（だ・である調の記事が混ざったことがある） */
+  {
+    const sentences = body
+      .split('\n')
+      .filter((line) => line.trim() && !/^\s*(#|-|\*|>|\d+\.)/.test(line))
+      .join('')
+      .split('。')
+      .map((s) => s.trim())
+      .filter(Boolean);
+    const polite = sentences.filter((s) =>
+      /(です|ます|ません|でした|ました|でしょう|ましょう|ください)[」』）)]*$/.test(s),
+    );
+    if (sentences.length >= 10 && polite.length / sentences.length < 0.5) {
+      errors.push('文末を「です・ます」にそろえてください');
+    }
+  }
+
+  /*
    * 内部リンクの文言が遷移先の内容と合っているか。
    * 「季節ごとの食べ方」で /seasonal に飛ばすような食い違いを防ぐ。
    */
@@ -312,7 +411,7 @@ function validate(article, existing) {
     '/about': /トリハル|店|老舗|仕事|歴史|創業/,
     '/access': /店舗|アクセス|場所|地図|南大工町|営業時間|行き方/,
     // /seasonal は季節「限定商品」のページ。「季節ごとの食べ方」のような一般論に使わせない
-    '/seasonal': /季節の(一品|商品|限定)|季節限定|土用|お盆|年末年始|旬の/,
+    '/seasonal': /季節の(一品|商品|限定)|季節限定|土用|お盆|年末年始|旬の|クリスマス/,
   };
   for (const m of body.matchAll(/\[([^\]]+)\]\((\/[a-z-]+)\)/g)) {
     const [, text, href] = m;
@@ -326,13 +425,21 @@ function validate(article, existing) {
   return errors;
 }
 
-async function generate(client, topic, existing, attempt, feedback) {
+/**
+ * 記事を1本生成し、モデルの出力をそのまま返す。
+ * 直しのときは、前回の出力と問題点を続けて渡し、その記事を直させる
+ * （前回の記事を見せずに「直して」と頼むと、一から別の記事を書き、別の問題が出る）。
+ */
+async function generate(client, topic, existing, attempt, previous) {
   const messages = [{ role: 'user', content: buildUserPrompt(topic, existing.map((p) => p.title)) }];
-  if (feedback) {
-    messages.push({
-      role: 'user',
-      content: `前回の記事には次の問題がありました。修正して、同じJSON形式で書き直してください。\n${feedback.map((f) => `- ${f}`).join('\n')}`,
-    });
+  if (previous) {
+    messages.push(
+      { role: 'assistant', content: previous.text },
+      {
+        role: 'user',
+        content: `この記事には次の問題がありました。指摘された箇所を直し（直しようのない文は削って）、同じJSON形式で全文を返してください。\n${previous.errors.map((f) => `- ${f}`).join('\n')}`,
+      },
+    );
   }
 
   const res = await client.messages.create({
@@ -343,11 +450,77 @@ async function generate(client, topic, existing, attempt, feedback) {
     messages,
   });
 
+  return res.content
+    .filter((b) => b.type === 'text')
+    .map((b) => b.text)
+    .join('');
+}
+
+/* ───────────── 事実確認 ───────────── */
+
+function buildFactCheckPrompt() {
+  return `あなたは、和歌山市南大工町にある焼き鳥・鰻の持ち帰り専門店「トリハル」の公式サイトで、公開前の記事の事実確認を担当しています。
+
+## 店について確認できている事実（これがすべてです）
+${FACTS.facts.map((f) => `- ${f}`).join('\n')}
+
+## 確認のしかた
+記事の中で、トリハル（この店・当店）について述べている文を一つずつ読み、上の事実で裏づけられないことを言い切っている文を、すべて探してください。
+
+裏づけがないとみなすもの:
+- 店の焼き方・タレの使い方・仕込み・包み方について、上にない工夫や理由を書いている（例：持ち帰りを見越してタレを濃くしている）
+- 商品の味・食感・日持ち・保存期間を、上にないのに言い切っている
+- 価格・品揃え・予約・営業について、上と違うこと、または上より強いことを書いている
+- 店の歴史や様子について、上にないことを書いている
+
+対象外:
+- 一般的な料理の知識や行事の説明で、トリハルのこととして書いていないもの
+- 上の事実を言い換えただけのもの
+
+該当する文がなければ、unsupported は空の配列にしてください。`;
+}
+
+/** 事実確認の結果の形（構造化出力で、この形のJSONだけを返させる） */
+const factCheckSchema = {
+  type: 'object',
+  properties: {
+    unsupported: {
+      type: 'array',
+      items: {
+        type: 'object',
+        properties: {
+          sentence: { type: 'string' },
+          reason: { type: 'string' },
+        },
+        required: ['sentence', 'reason'],
+        additionalProperties: false,
+      },
+    },
+  },
+  required: ['unsupported'],
+  additionalProperties: false,
+};
+
+/**
+ * 店について書いた文が、事実の一覧で裏づけられるかを別の呼び出しで確かめる。
+ * 正規表現では拾えない創作（「持ち帰りを見越してタレを調整している」など）を止めるため。
+ */
+async function factCheck(client, article) {
+  const res = await client.messages.create({
+    model: MODEL,
+    max_tokens: 2000,
+    system: buildFactCheckPrompt(),
+    messages: [{ role: 'user', content: `次の記事を確認してください。\n\n# ${article.title}\n\n${article.body}` }],
+    output_config: { format: { type: 'json_schema', schema: factCheckSchema } },
+  });
+  if (res.stop_reason !== 'end_turn') {
+    throw new Error(`事実確認が最後まで終わりませんでした（${res.stop_reason}）`);
+  }
   const text = res.content
     .filter((b) => b.type === 'text')
     .map((b) => b.text)
     .join('');
-  return extractJson(text);
+  return JSON.parse(text).unsupported;
 }
 
 /* ───────────── main ───────────── */
@@ -379,21 +552,43 @@ async function main() {
   const client = new Anthropic({ apiKey });
 
   let article = null;
-  let feedback = null;
+  let previous = null;
   for (let attempt = 0; attempt < 3; attempt += 1) {
+    let text;
     try {
-      const candidate = await generate(client, topic, existing, attempt, feedback);
-      const errors = validate(candidate, existing);
-      if (errors.length === 0) {
-        article = candidate;
-        break;
-      }
-      console.warn(`検証に通りませんでした（${attempt + 1}回目）: ${errors.join(' / ')}`);
-      feedback = errors;
+      text = await generate(client, topic, existing, attempt, previous);
     } catch (err) {
       console.warn(`生成に失敗しました（${attempt + 1}回目）: ${err.message}`);
-      feedback = ['出力がJSONとして読み取れませんでした。JSONだけを返してください。'];
+      continue;
     }
+
+    let candidate = null;
+    let errors;
+    try {
+      candidate = extractJson(text);
+      errors = validate(candidate, existing);
+    } catch {
+      errors = ['出力がJSONとして読み取れませんでした。JSONだけを返してください。'];
+    }
+
+    // 機械的な検証を通ったものだけ、事実確認にかける
+    if (errors.length === 0) {
+      try {
+        errors = (await factCheck(client, candidate)).map(
+          (u) => `「${u.sentence.trim().slice(0, 40)}」— ${u.reason}`,
+        );
+      } catch (err) {
+        console.warn(`事実確認に失敗しました（${attempt + 1}回目）: ${err.message}`);
+        continue;
+      }
+    }
+
+    if (errors.length === 0) {
+      article = candidate;
+      break;
+    }
+    console.warn(`検証に通りませんでした（${attempt + 1}回目）: ${errors.join(' / ')}`);
+    if (text.trim()) previous = { text, errors };
   }
 
   if (!article) {
@@ -434,7 +629,14 @@ async function main() {
   console.log(`タイトル: ${article.title}`);
 }
 
-main().catch((err) => {
-  console.error(err);
-  process.exit(1);
-});
+export { validate, readExistingPosts };
+
+// 検証だけをテストから読み込めるよう、直接実行されたときだけ記事を生成する
+const isMain =
+  process.argv[1] && path.resolve(process.argv[1]).toLowerCase() === fileURLToPath(import.meta.url).toLowerCase();
+if (isMain) {
+  main().catch((err) => {
+    console.error(err);
+    process.exit(1);
+  });
+}
