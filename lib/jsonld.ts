@@ -1,5 +1,6 @@
 import { shop } from '@/data/shop';
-import { faqItems, type FaqItem } from '@/data/faq';
+import { getFaqItems, type FaqItem } from '@/data/faq';
+import { currentVoucher } from '@/data/vouchers';
 import { absoluteUrl, defaultDescription } from '@/lib/site';
 
 const dayMap: Record<string, string> = {
@@ -29,6 +30,7 @@ const openDays = ALL_DAYS.filter(
 export function localBusinessJsonLd() {
   const url = absoluteUrl('/');
   const image = absoluteUrl('/photos/storefront.jpg');
+  const voucher = currentVoucher();
 
   const data: Record<string, unknown> = {
     '@context': 'https://schema.org',
@@ -59,7 +61,8 @@ export function localBusinessJsonLd() {
     // 店内飲食はしていない
     takeoutAvailable: true,
     acceptsReservations: false,
-    paymentAccepted: '現金, VISA, Mastercard',
+    // 使える商品券は利用期間中だけ載せる（data/vouchers.ts）
+    paymentAccepted: ['現金', 'VISA', 'Mastercard', ...(voucher ? [voucher.fullName] : [])].join(', '),
     currenciesAccepted: 'JPY',
     sameAs: [shop.instagram],
   };
@@ -107,7 +110,7 @@ export function breadcrumbJsonLd(crumbs: Crumb[]) {
 }
 
 /** 画面に出しているFAQと同じ内容だけを渡すこと */
-export function faqJsonLd(items: FaqItem[] = faqItems) {
+export function faqJsonLd(items: FaqItem[] = getFaqItems()) {
   if (items.length === 0) return null;
   return {
     '@context': 'https://schema.org',

@@ -11,6 +11,7 @@ import { breadcrumbJsonLd } from '@/lib/jsonld';
 import { photos } from '@/data/photos';
 import { availabilityLabel, menuGroups, priceNotice } from '@/data/menu';
 import { shop } from '@/data/shop';
+import { currentVoucher } from '@/data/vouchers';
 
 export const metadata: Metadata = buildMetadata({
   title: '商品一覧・価格｜和歌山市の焼き鳥と鰻のテイクアウト',
@@ -26,6 +27,8 @@ const crumbs = [
 ];
 
 export default function MenuPage() {
+  const voucher = currentVoucher();
+
   return (
     <>
       <PageHero
@@ -105,6 +108,7 @@ export default function MenuPage() {
               <p className="mt-5 max-w-[34rem] text-[0.88rem] leading-[2.05] opacity-78">{priceNotice}</p>
               <p className="mt-4 max-w-[34rem] text-[0.88rem] leading-[2.05] opacity-78">
                 お支払いは現金のほか、クレジットカード（VISA・Mastercard）もご利用いただけます。
+                {voucher?.paymentNote}
               </p>
               <div className="mt-8 flex flex-wrap gap-x-10 gap-y-4">
                 <Link href="/unagi" className="rule-link text-tan">

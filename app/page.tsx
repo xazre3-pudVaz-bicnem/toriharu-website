@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 
 import Hero from '@/components/sections/Hero';
+import VoucherNotice from '@/components/sections/VoucherNotice';
 import Introduction from '@/components/sections/Introduction';
 import UnagiSection from '@/components/sections/UnagiSection';
 import FireSection from '@/components/sections/FireSection';
@@ -33,6 +34,8 @@ export default function HomePage() {
   return (
     <>
       <Hero />
+      {/* 使える商品券の案内。期間外は何も出ない */}
+      <VoucherNotice />
       <Introduction />
       <UnagiSection />
       <FireSection />

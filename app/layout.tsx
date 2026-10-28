@@ -70,6 +70,12 @@ export const viewport: Viewport = {
   colorScheme: 'light',
 };
 
+/**
+ * 期間限定の案内（data/vouchers.ts）を期間どおりに出し入れするため、
+ * ページを1時間ごとに作り直す。外すと、期間が過ぎても次のデプロイまで表示が残る。
+ */
+export const revalidate = 3600;
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="ja" className={`${serif.variable} ${sans.variable}`}>

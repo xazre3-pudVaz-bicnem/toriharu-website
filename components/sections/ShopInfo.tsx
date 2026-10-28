@@ -1,6 +1,7 @@
 import Reveal from '@/components/ui/Reveal';
 import SectionLabel from '@/components/ui/SectionLabel';
 import { shop } from '@/data/shop';
+import { currentVoucher } from '@/data/vouchers';
 
 type Props = {
   /** 章番号を出すか（下層ページでは省略） */
@@ -11,6 +12,8 @@ type Props = {
 };
 
 export default function ShopInfo({ index, heading = '店舗情報', mapClassName = 'h-[58svh] md:h-[70svh]' }: Props) {
+  const voucher = currentVoucher();
+
   return (
     <section className="washi-grain relative bg-washi px-5 py-24 md:px-10 md:py-36">
       <div className="mx-auto max-w-[92rem]">
@@ -58,7 +61,22 @@ export default function ShopInfo({ index, heading = '店舗情報', mapClassName
                   ),
                 },
                 { k: '業態', v: '焼き鳥・鰻の持ち帰り専門店（店内に客席はありません）' },
-                { k: 'お支払い', v: '現金／クレジットカード（VISA・Mastercard）' },
+                {
+                  k: 'お支払い',
+                  v: (
+                    <>
+                      現金／クレジットカード（VISA・Mastercard）
+                      {voucher && (
+                        <>
+                          <br />
+                          <span className="text-[0.82rem]">
+                            {voucher.fullName}は、{voucher.until}ご利用いただけます。
+                          </span>
+                        </>
+                      )}
+                    </>
+                  ),
+                },
                 {
                   k: 'Instagram',
                   v: (

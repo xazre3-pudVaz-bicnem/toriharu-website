@@ -4,6 +4,8 @@
  * （画面に無い質問を構造化データに入れない）
  */
 
+import { currentVoucher } from '@/data/vouchers';
+
 export type FaqItem = {
   q: string;
   a: string;
@@ -55,3 +57,20 @@ export const faqItems: FaqItem[] = [
     a: 'もも・むね・もも骨付き・鶏肝・手羽先などの生肉も販売しています。仕入れの状況によりご用意できない場合がありますので、あらかじめお電話でご確認ください。',
   },
 ];
+
+/**
+ * 画面と FAQPage に出す一覧。
+ * 使える商品券がある期間だけ、その質問をクレジットカードの質問のあとに差し込みます
+ * （data/vouchers.ts）。期間が過ぎると自動で消えます。
+ */
+export function getFaqItems(): FaqItem[] {
+  const voucher = currentVoucher();
+  if (!voucher) return faqItems;
+
+  const item: FaqItem = {
+    q: `${voucher.fullName}は使えますか。`,
+    a: `ご利用いただけます。トリハルは「${voucher.edition} ${voucher.fullName}」の取扱店舗です。ご利用期間は${voucher.start}〜${voucher.end}です。${voucher.note}`,
+  };
+  const at = faqItems.findIndex((f) => f.q.startsWith('クレジットカード')) + 1;
+  return [...faqItems.slice(0, at), item, ...faqItems.slice(at)];
+}

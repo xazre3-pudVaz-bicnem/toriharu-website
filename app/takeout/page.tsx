@@ -11,6 +11,7 @@ import { buildMetadata } from '@/lib/seo';
 import { breadcrumbJsonLd } from '@/lib/jsonld';
 import { photos } from '@/data/photos';
 import { shop } from '@/data/shop';
+import { currentVoucher } from '@/data/vouchers';
 
 export const metadata: Metadata = buildMetadata({
   title: '持ち帰り・全国発送について｜和歌山市のテイクアウト',
@@ -40,6 +41,8 @@ const steps = [
     n: '03',
     title: 'お支払い',
     body: '現金のほか、クレジットカード（VISA・Mastercard）をご利用いただけます。',
+    /** 使える商品券がある期間は、その案内を続けて出す（data/vouchers.ts） */
+    withVoucher: true,
   },
   {
     n: '04',
@@ -64,6 +67,8 @@ const reheat = [
 ];
 
 export default function TakeoutPage() {
+  const voucher = currentVoucher();
+
   return (
     <>
       <PageHero
@@ -96,7 +101,10 @@ export default function TakeoutPage() {
                 <span className="eyebrow pt-1 text-tan tabular-nums">{s.n}</span>
                 <div>
                   <h3 className="display text-lg tracking-[0.06em]">{s.title}</h3>
-                  <p className="mt-3 text-[0.89rem] leading-[2] opacity-80">{s.body}</p>
+                  <p className="mt-3 text-[0.89rem] leading-[2] opacity-80">
+                    {s.body}
+                    {s.withVoucher && voucher?.paymentNote}
+                  </p>
                 </div>
               </Reveal>
             ))}

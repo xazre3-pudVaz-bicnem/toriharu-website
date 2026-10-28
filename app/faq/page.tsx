@@ -7,7 +7,7 @@ import JsonLd from '@/components/ui/JsonLd';
 import ShopInfo from '@/components/sections/ShopInfo';
 import { buildMetadata } from '@/lib/seo';
 import { breadcrumbJsonLd, faqJsonLd } from '@/lib/jsonld';
-import { faqItems } from '@/data/faq';
+import { getFaqItems } from '@/data/faq';
 import { photos } from '@/data/photos';
 import { shop } from '@/data/shop';
 
@@ -25,6 +25,8 @@ const crumbs = [
 ];
 
 export default function FaqPage() {
+  const faqItems = getFaqItems();
+
   return (
     <>
       <PageHero
