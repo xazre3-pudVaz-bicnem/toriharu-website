@@ -1,11 +1,20 @@
 import { shop } from '@/data/shop';
 
 /**
- * 本番URL。未設定のときは null を返し、canonical / OG / sitemap を出さず
+ * 本番URL。次の順に決める。
+ * 1. NEXT_PUBLIC_SITE_URL（明示したとき）
+ * 2. Vercel の本番デプロイなら、プロジェクトの本番ドメイン（独自ドメインがあればそちら）
+ *
+ * どちらでもないとき（手元・プレビュー）は null を返し、canonical / OG / sitemap を出さず
  * robots を Disallow にすることで、プレビューURLの誤インデックスを防ぐ。
+ * 2 が無かったころ、本番で 1 が未設定のまま公開され、サイト全体が検索から締め出されていた。
  */
 export const siteUrl: string | null = (() => {
-  const raw = process.env.NEXT_PUBLIC_SITE_URL?.trim();
+  const production =
+    process.env.VERCEL_ENV === 'production' && process.env.VERCEL_PROJECT_PRODUCTION_URL
+      ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+      : '';
+  const raw = process.env.NEXT_PUBLIC_SITE_URL?.trim() || production;
   if (!raw) return null;
   try {
     const u = new URL(raw);

@@ -64,11 +64,15 @@ export function localBusinessJsonLd() {
     // 使える商品券は利用期間中だけ載せる（data/vouchers.ts）
     paymentAccepted: ['現金', 'VISA', 'Mastercard', ...(voucher ? [voucher.fullName] : [])].join(', '),
     currenciesAccepted: 'JPY',
+    hasMap: shop.mapLink,
     sameAs: [shop.instagram],
   };
 
   if (url) data.url = url;
   if (image) data.image = [image];
+  // 商品一覧ページ（Google は FoodEstablishment の menu をURLで受け取る）
+  const menu = absoluteUrl('/menu');
+  if (menu) data.menu = menu;
   if (shop.geo) {
     data.geo = { '@type': 'GeoCoordinates', latitude: shop.geo.lat, longitude: shop.geo.lng };
   }

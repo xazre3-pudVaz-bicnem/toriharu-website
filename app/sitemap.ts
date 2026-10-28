@@ -15,8 +15,15 @@ const staticRoutes: { path: string; priority: number; changeFrequency: MetadataR
   { path: '/blog', priority: 0.7, changeFrequency: 'daily' },
 ];
 
+/**
+ * lastmod は、中身が実際に変わった日だけを書く。ビルドのたびに今日の日付を入れると
+ * 毎日すべてのページが「更新された」ことになり、Google が lastmod を信用しなくなる。
+ * 最新記事が載るトップと /blog だけ、最新記事の日付にする。
+ */
+const showsLatestPosts = new Set(['/', '/blog']);
+
 export default function sitemap(): MetadataRoute.Sitemap {
-  // 本番URLが未設定のときは何も出力しない（プレビューURLの誤インデックス防止）
+  // 本番URLが決まらないとき（手元・プレビュー）は何も出力しない（誤インデックス防止）
   if (!siteUrl) return [];
   const base = siteUrl;
 
@@ -26,7 +33,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     ...staticRoutes.map((r) => ({
       url: new URL(r.path, base).toString(),
-      lastModified: r.path === '/blog' && latest ? new Date(latest) : new Date(),
+      ...(showsLatestPosts.has(r.path) && latest ? { lastModified: new Date(latest) } : {}),
       changeFrequency: r.changeFrequency,
       priority: r.priority,
     })),

@@ -14,7 +14,8 @@ import { unagiItems } from '@/data/menu';
 import { shop, wholesale } from '@/data/shop';
 
 export const metadata: Metadata = buildMetadata({
-  title: '国産鰻の蒲焼・白焼き｜和歌山市で毎朝捌く鰻',
+  // ひらがなで検索する人が多いため、タイトルには「うなぎ」と「鰻」の両方を入れる
+  title: '国産うなぎの蒲焼・白焼き｜和歌山市で毎朝捌く鰻',
   description:
     '和歌山市南大工町のトリハルは、国産の活鰻を毎朝店舗で捌き、紀州備長炭と秘伝のタレで焼き上げる持ち帰り専門店です。鰻の蒲焼・白焼き・う肝串・骨せんべいを販売、全国発送も承ります。飲食店向けに、卸用の鰻も扱っています。',
   path: '/unagi',
